@@ -2,68 +2,212 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grade 7 Test System - Full Enhanced</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Grade 7 Test System - Mobile Friendly</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Poppins', sans-serif;
             background: linear-gradient(135deg, #1e3c72, #2a5298);
             min-height: 100vh;
             display: flex;
             justify-content: center;
-            align-items: center;
-            padding: 20px;
+            align-items: flex-start;
+            padding: 12px;
+            color: #333;
+            -webkit-tap-highlight-color: transparent;
         }
+
         .container {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            padding: 30px;
+            background: rgba(255, 255, 255, 0.97);
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+            padding: 20px;
             width: 100%;
-            max-width: 900px;
+            max-width: 960px;
         }
-        .section { 
-            background: white; 
-            padding: 20px; 
-            margin: 20px 0; 
-            border-radius: 10px; 
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
+
+        .section {
+            background: white;
+            padding: 20px;
+            margin: 16px 0;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
         }
-        h2, h3 { color: #2a5298; text-align: center; margin-bottom: 15px; }
+
+        h2, h3 {
+            color: #2a5298;
+            text-align: center;
+            margin-bottom: 16px;
+            font-size: 1.5rem;
+        }
+
         .dashboard-stats {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 15px;
-            margin: 20px 0;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px;
+            margin: 16px 0;
         }
+
         .stat-card {
             background: #f8f9fa;
-            padding: 15px;
+            padding: 16px;
             border-radius: 10px;
             text-align: center;
-            border: 1px solid #ddd;
+            border: 1px solid #e0e0e0;
         }
-        .stat-card h4 { margin: 0 0 8px; font-size: 1.1rem; color: #555; }
-        .stat-card .value { font-size: 1.6rem; font-weight: 600; color: #2a5298; }
-        .clock { font-size: 1.3rem; color: #e74c3c; text-align: center; margin: 15px 0; font-weight: 600; }
-        input, select, button { margin: 10px 0; padding: 12px; width: 100%; border: 2px solid #ddd; border-radius: 8px; font-size: 16px; }
-        button { background: linear-gradient(45deg, #2a5298, #1e3c72); color: white; border: none; cursor: pointer; font-weight: 600; }
-        button:hover { transform: scale(1.02); }
-        .nav-buttons { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+
+        .stat-card h4 {
+            margin-bottom: 6px;
+            font-size: 0.95rem;
+            color: #555;
+        }
+
+        .stat-card .value {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #2a5298;
+        }
+
+        .clock, #timeLeft {
+            font-size: 1.2rem;
+            color: #e74c3c;
+            text-align: center;
+            margin: 12px 0;
+            font-weight: 600;
+        }
+
+        input, select, button {
+            margin: 12px 0;
+            padding: 14px 16px;
+            width: 100%;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.2s;
+        }
+
+        button {
+            background: linear-gradient(45deg, #2a5298, #1e3c72);
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            min-height: 52px;
+        }
+
+        button:active {
+            transform: scale(0.97);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+
+        .nav-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .nav-buttons button {
+            flex: 1;
+        }
+
         .hidden { display: none; }
-        #timeLeft { font-weight: 600; color: #e74c3c; text-align: center; font-size: 1.3rem; margin-bottom: 10px; }
-        table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.95rem; }
-        th, td { border: 1px solid #ecf0f1; padding: 10px; text-align: left; }
-        th { background: #2a5298; color: white; }
-        .question { margin-bottom: 24px; padding: 16px; background: #f9f9f9; border-radius: 10px; }
-        .option-row { display: flex; align-items: center; margin: 10px 0; cursor: pointer; }
-        .option-radio { width: auto; margin-right: 12px; cursor: pointer; }
+
+        .question {
+            margin-bottom: 28px;
+            padding: 18px;
+            background: #f9f9f9;
+            border-radius: 12px;
+            font-size: 1.05rem;
+        }
+
+        .option-row {
+            display: flex;
+            align-items: center;
+            margin: 14px 0;
+            cursor: pointer;
+            min-height: 48px;
+            padding: 8px;
+            border-radius: 8px;
+        }
+
+        .option-row:hover,
+        .option-row:active {
+            background: #e8f0fe;
+        }
+
+        .option-radio {
+            width: 22px;
+            height: 22px;
+            margin-right: 14px;
+            flex-shrink: 0;
+        }
+
+        label {
+            flex: 1;
+            font-size: 1rem;
+            word-break: break-word;
+        }
+
+        .progress-container {
+            height: 10px;
+            background: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 12px 0;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: #27ae60;
+            width: 0;
+            transition: width 0.4s ease;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 12px;
+            font-size: 0.95rem;
+        }
+
+        th, td {
+            border: 1px solid #e0e0e0;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background: #2a5298;
+            color: white;
+        }
+
+        @media (min-width: 600px) {
+            body { padding: 20px; }
+            .container { padding: 32px; }
+            .nav-buttons { flex-direction: row; justify-content: center; }
+            .question { font-size: 1.1rem; }
+            h2 { font-size: 1.8rem; }
+            .stat-card .value { font-size: 1.8rem; }
+        }
+
+        @media (min-width: 900px) {
+            .container { max-width: 1100px; }
+            .dashboard-stats { grid-template-columns: repeat(5, 1fr); }
+        }
     </style>
 </head>
 <body>
     <div class="container">
+
         <!-- Login -->
         <div id="loginSection" class="section">
             <h2>Login</h2>
@@ -103,7 +247,7 @@
                 </div>
             </div>
             <button onclick="showSection('testSection')">Start New Test</button>
-            <button onclick="logout()" style="background:#e74c3c; margin-top:10px;">Logout</button>
+            <button onclick="logout()" style="background:#e74c3c; margin-top:12px;">Logout</button>
         </div>
 
         <!-- Test Selection -->
@@ -129,7 +273,7 @@
             <div id="timeLeft">Time Left: 00:00</div>
             <div class="progress-container"><div id="progressBar" class="progress-bar"></div></div>
             <div id="questionContainer"></div>
-            <div id="pageInfo" style="text-align:center; margin:15px 0; color:#555;"></div>
+            <div id="pageInfo" style="text-align:center; margin:16px 0; color:#555; font-size:1rem;"></div>
             <div class="nav-buttons">
                 <button id="prevBtn" onclick="previousPage()">Previous</button>
                 <button id="nextBtn" onclick="nextPage()">Next</button>
@@ -141,7 +285,7 @@
         <div id="resultsSection" class="section hidden">
             <h2>Results</h2>
             <div id="resultsDisplay" style="font-size:1.3rem; text-align:center; margin:20px 0;"></div>
-            <div id="feedbackContainer" style="max-height:400px; overflow-y:auto;"></div>
+            <div id="feedbackContainer" style="max-height:400px; overflow-y:auto; font-size:0.98rem; line-height:1.5;"></div>
             <button onclick="showSection('studentDashboard')">Back to Dashboard</button>
         </div>
 
@@ -172,11 +316,12 @@
             </div>
             <button onclick="logout()" style="margin-top:25px; width:100%; background:#e74c3c;">Logout</button>
         </div>
+
     </div>
 
     <script>
         // ────────────────────────────────────────────────
-        // ALL GLOBAL VARIABLES FIRST (fixes initialization error)
+        // GLOBAL VARIABLES
         // ────────────────────────────────────────────────
         let students = JSON.parse(localStorage.getItem('students')) || [
             { username: 'test', password: 'pass' }
@@ -206,7 +351,6 @@
         function showSection(id) {
             document.querySelectorAll('.section').forEach(el => el.classList.add('hidden'));
             document.getElementById(id).classList.remove('hidden');
-
             if (id === 'studentDashboard' && currentUser?.role === 'student') {
                 updateStudentDashboard();
             }
@@ -217,9 +361,7 @@
 
         function updateStudentDashboard() {
             document.getElementById('studentName').textContent = currentUser.username;
-
             const myTests = testHistory.filter(t => t.student === currentUser.username);
-
             const totalTests = myTests.length;
             const totalCorrect = myTests.reduce((sum, t) => sum + t.score, 0);
             const totalQuestions = myTests.reduce((sum, t) => sum + t.total, 0);
@@ -264,7 +406,7 @@
             pool.sort(() => Math.random() - 0.5);
             currentQuestions = pool.slice(0, count);
 
-            if (currentQuestions.length === 0) return alert("No questions available.");
+            if (currentQuestions.length === 0) return alert("No questions available for this subject yet.");
 
             userAnswers = {};
             currentPage = 0;
@@ -292,7 +434,7 @@
                             const checked = userAnswers[idx] === val ? 'checked' : '';
                             return `
                                 <label class="option-row">
-                                    <input type="radio" name="q${idx}" value="${val}" ${checked} onchange="saveAnswer(${idx}, '${val}')">
+                                    <input type="radio" name="q${idx}" value="${val}" ${checked} onchange="saveAnswer(${idx}, '${val}')" class="option-radio">
                                     ${val}. ${opt}
                                 </label>
                             `;
@@ -303,7 +445,6 @@
 
             document.getElementById('questionContainer').innerHTML = html;
             document.getElementById('pageInfo').innerText = `Page ${currentPage + 1} of ${Math.ceil(currentQuestions.length / questionsPerPage)}`;
-
             document.getElementById('prevBtn').classList.toggle('hidden', currentPage === 0);
             const isLast = (currentPage + 1) * questionsPerPage >= currentQuestions.length;
             document.getElementById('nextBtn').classList.toggle('hidden', isLast);
@@ -313,16 +454,30 @@
         function saveAnswer(idx, val) {
             userAnswers[idx] = val;
             updateProgressBar();
+            // Visual feedback
+            document.querySelectorAll(`input[name="q${idx}"]`).forEach(radio => {
+                radio.parentElement.style.background = radio.checked ? '#e8f0fe' : '';
+            });
         }
 
         function updateProgressBar() {
             const total = currentQuestions.length;
             const answered = Object.keys(userAnswers).length;
-            document.getElementById('progressBar').style.width = (answered / total * 100) + '%';
+            const percentage = total > 0 ? (answered / total * 100) : 0;
+            document.getElementById('progressBar').style.width = percentage + '%';
         }
 
-        function nextPage() { currentPage++; displayPage(); }
-        function previousPage() { if (currentPage > 0) { currentPage--; displayPage(); } }
+        function nextPage() {
+            currentPage++;
+            displayPage();
+        }
+
+        function previousPage() {
+            if (currentPage > 0) {
+                currentPage--;
+                displayPage();
+            }
+        }
 
         function startTimer() {
             timer = setInterval(() => {
@@ -330,7 +485,10 @@
                 const m = Math.floor(timeLeft / 60);
                 const s = timeLeft % 60;
                 document.getElementById('timeLeft').innerText = `Time Left: ${m}:${s < 10 ? '0' : ''}${s}`;
-                if (timeLeft <= 0) submitTest();
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    submitTest();
+                }
             }, 1000);
         }
 
@@ -340,15 +498,15 @@
             currentQuestions.forEach((q, i) => {
                 if (userAnswers[i] === q.answer) score++;
             });
-            const reward = score * 0.50;
 
+            const reward = score * 0.50;
             const result = {
                 student: currentUser.username,
                 subject: currentQuestions[0].subject,
                 score,
                 total: currentQuestions.length,
                 reward,
-                date: new Date().toLocaleDateString()
+                date: new Date().toLocaleDateString('en-ZM')
             };
 
             testHistory.push(result);
@@ -368,7 +526,7 @@
             let fb = '<h3 style="margin:20px 0 10px;">Feedback</h3>';
             currentQuestions.forEach((q, i) => {
                 const correct = userAnswers[i] === q.answer;
-                fb += `<p>Q${i+1}: ${correct ? 'Correct' : 'Wrong'} - ${q.explanation}</p>`;
+                fb += `<p>Q${i+1}: ${correct ? '<span style="color:#27ae60">Correct</span>' : '<span style="color:#e74c3c">Wrong</span>'} - ${q.explanation}</p>`;
             });
             document.getElementById('feedbackContainer').innerHTML = fb;
         }
@@ -407,262 +565,163 @@
             location.reload();
         }
 
-        // Your questions array (example – add your full list here)
+        // Questions (only science shown – add math & english as needed)
         const questions = [
-            // Paste your science 1–400 + math + english questions here
-            // For example:
-            {id:151, subject:"science", text:"Which method is best to kill germs in drinking water in a Zambian village?", options:["A. Adding sugar","B. Boiling","C. Adding salt","D. Leaving in sun"], answer:"B", explanation:"Boiling kills most harmful germs."},
-            {id:152, subject:"science", text:"What is the main source of energy for Earth’s climate system?", options:["A. Moon","B. Sun","C. Wind","D. Oceans"], answer:"B", explanation:"The Sun drives weather and climate."},
-            {id:153, subject:"science", text:"Which part of the maize plant is ground to make mealie-meal?", options:["A. Leaves","B. Roots","C. Grains","D. Stem"], answer:"C", explanation:"The grains (kernels) are used."},
-            {id:154, subject:"science", text:"Which simple machine helps lift buckets of water from a deep well?", options:["A. Lever","B. Pulley","C. Wedge","D. Screw"], answer:"B", explanation:"A pulley changes direction of force."},
-            {id:155, subject:"science", text:"Which food group helps build strong bones and teeth?", options:["A. Carbohydrates","B. Proteins","C. Fats","D. Calcium-rich foods"], answer:"D", explanation:"Calcium (milk, small fish with bones) strengthens bones."},
-            {id:156, subject:"science", text:"What gas do humans breathe in to produce energy?", options:["A. Carbon dioxide","B. Oxygen","C. Nitrogen","D. Helium"], answer:"B", explanation:"Oxygen is used in respiration."},
-            {id:157, subject:"science", text:"Which organ cleans blood and produces urine?", options:["A. Heart","B. Lungs","C. Kidneys","D. Liver"], answer:"C", explanation:"Kidneys filter blood."},
-            {id:158, subject:"science", text:"Which Zambian crop is a good source of carbohydrates?", options:["A. Cassava","B. Beans","C. Groundnuts","D. Kapenta"], answer:"A", explanation:"Cassava is rich in carbohydrates."},
-            {id:159, subject:"science", text:"What happens to a liquid when it gains heat and turns to gas?", options:["A. Freezing","B. Melting","C. Evaporation","D. Condensation"], answer:"C", explanation:"Evaporation turns liquid to vapour."},
-            {id:160, subject:"science", text:"Which animal in Zambia is protected in national parks and has a trunk?", options:["A. Lion","B. Elephant","C. Zebra","D. Buffalo"], answer:"B", explanation:"Elephant."},
-            {id:161, subject:"science", text:"Which vitamin prevents scurvy and is found in oranges and guavas?", options:["A. Vitamin A","B. Vitamin B","C. Vitamin C","D. Vitamin D"], answer:"C", explanation:"Vitamin C prevents scurvy."},
-            {id:162, subject:"science", text:"What is the function of roots in a plant?", options:["A. Make food","B. Absorb water and minerals","C. Produce flowers","D. Release oxygen"], answer:"B", explanation:"Roots take in water and nutrients."},
-            {id:163, subject:"science", text:"Which energy is stored in charcoal before burning?", options:["A. Light","B. Chemical","C. Sound","D. Electrical"], answer:"B", explanation:"Chemical energy in fuel."},
-            {id:164, subject:"science", text:"Which process removes solid particles from muddy water?", options:["A. Evaporation","B. Filtration","C. Condensation","D. Distillation"], answer:"B", explanation:"Filtration separates solids."},
-            {id:165, subject:"science", text:"Which Zambian bird is large, flightless, and lays big eggs?", options:["A. Ostrich","B. Eagle","C. Parrot","D. Flamingo"], answer:"A", explanation:"Ostrich."},
-            {id:166, subject:"science", text:"What do we call animals that eat both plants and meat?", options:["A. Carnivores","B. Herbivores","C. Omnivores","D. Insectivores"], answer:"C", explanation:"Omnivores eat plants and animals."},
-            {id:167, subject:"science", text:"Which simple machine is used in a hoe to dig soil?", options:["A. Pulley","B. Lever","C. Inclined plane","D. Wheel and axle"], answer:"B", explanation:"Hoe acts as a lever."},
-            {id:168, subject:"science", text:"Which disease is prevented by sleeping under insecticide-treated nets?", options:["A. Cholera","B. Malaria","C. Tuberculosis","D. Diarrhoea"], answer:"B", explanation:"Mosquito nets prevent malaria."},
-            {id:169, subject:"science", text:"What is the main source of proteins in a Zambian diet?", options:["A. Nshima","B. Beans and kapenta","C. Sweet potatoes","D. Bananas"], answer:"B", explanation:"Beans and kapenta are protein-rich."},
-            {id:170, subject:"science", text:"Which state of matter has a definite shape and volume?", options:["A. Gas","B. Liquid","C. Solid","D. Plasma"], answer:"C", explanation:"Solids have fixed shape and volume."},
-            {id:171, subject:"science", text:"Which part of the eye controls the amount of light entering?", options:["A. Retina","B. Iris","C. Cornea","D. Lens"], answer:"B", explanation:"Iris adjusts pupil size."},
-            {id:172, subject:"science", text:"What do green plants need for photosynthesis besides sunlight?", options:["A. Soil only","B. Carbon dioxide and water","C. Oxygen only","D. Nitrogen only"], answer:"B", explanation:"CO₂ + H₂O + light → glucose + O₂."},
-            {id:173, subject:"science", text:"Which Zambian river is the longest and flows into the Indian Ocean?", options:["A. Kafue","B. Luangwa","C. Zambezi","D. Chambeshi"], answer:"C", explanation:"Zambezi River."},
-            {id:174, subject:"science", text:"What is the main danger of drinking untreated water?", options:["A. Too much sugar","B. Germs causing diarrhoea","C. Too much salt","D. No taste"], answer:"B", explanation:"Contaminated water spreads diseases."},
-            {id:175, subject:"science", text:"Which machine makes work easier by spreading force over distance?", options:["A. Inclined plane","B. Lever","C. Pulley","D. Wedge"], answer:"A", explanation:"Inclined plane reduces effort."},
-            {id:176, subject:"science", text:"Which nutrient gives the body quick energy?", options:["A. Proteins","B. Carbohydrates","C. Vitamins","D. Minerals"], answer:"B", explanation:"Carbohydrates provide energy."},
-            {id:177, subject:"science", text:"What do we call the young stage of a frog?", options:["A. Tadpole","B. Caterpillar","C. Pupa","D. Larva"], answer:"A", explanation:"Tadpole → frog (metamorphosis)."},
-            {id:178, subject:"science", text:"Which sense organ helps us hear sounds?", options:["A. Eyes","B. Nose","C. Ears","D. Tongue"], answer:"C", explanation:"Ears detect sound waves."},
-            {id:179, subject:"science", text:"What happens when water vapour cools in the air?", options:["A. Evaporation","B. Condensation","C. Freezing","D. Melting"], answer:"B", explanation:"Condensation forms clouds/droplets."},
-            {id:180, subject:"science", text:"Which Zambian animal has black and white stripes?", options:["A. Lion","B. Zebra","C. Giraffe","D. Hippopotamus"], answer:"B", explanation:"Zebra."},
-            {id:181, subject:"science", text:"Which food helps prevent goitre?", options:["A. Iodised salt","B. White sugar","C. Cooking oil","D. White rice"], answer:"A", explanation:"Iodine prevents goitre."},
-            {id:182, subject:"science", text:"What is the main job of red blood cells?", options:["A. Fight germs","B. Carry oxygen","C. Clot blood","D. Digest food"], answer:"B", explanation:"Red blood cells transport oxygen."},
-            {id:183, subject:"science", text:"Which simple machine is an axe?", options:["A. Lever","B. Pulley","C. Wedge","D. Screw"], answer:"C", explanation:"Wedge splits wood."},
-            {id:184, subject:"science", text:"What do plants need from soil besides water?", options:["A. Sunlight","B. Minerals/nutrients","C. Air only","D. Sugar"], answer:"B", explanation:"Minerals for growth."},
-            {id:185, subject:"science", text:"Which disease spreads through mosquito bites?", options:["A. Cholera","B. Malaria","C. Measles","D. Mumps"], answer:"B", explanation:"Malaria parasite carried by mosquitoes."},
-            {id:186, subject:"science", text:"What is the change from solid to liquid called?", options:["A. Evaporation","B. Melting","C. Freezing","D. Condensation"], answer:"B", explanation:"Melting (e.g. ice to water)."},
-            {id:187, subject:"science", text:"Which Zambian park is famous for the Victoria Falls?", options:["A. South Luangwa","B. Kafue","C. Mosi-oa-Tunya","D. Lower Zambezi"], answer:"C", explanation:"Mosi-oa-Tunya National Park."},
-            {id:188, subject:"science", text:"What is the role of decomposers in the environment?", options:["A. Make food","B. Break down dead matter","C. Hunt animals","D. Pollinate flowers"], answer:"B", explanation:"Decomposers recycle nutrients."},
-            {id:189, subject:"science", text:"Which vitamin helps wounds heal and is in fruits?", options:["A. Vitamin A","B. Vitamin C","C. Vitamin D","D. Vitamin K"], answer:"B", explanation:"Vitamin C aids healing."},
-            {id:190, subject:"science", text:"What do we call animals that only eat plants?", options:["A. Carnivores","B. Herbivores","C. Omnivores","D. Scavengers"], answer:"B", explanation:"Herbivores (e.g. goats, rabbits)."},
-            {id:191, subject:"science", text:"Which part of a flower produces pollen?", options:["A. Petal","B. Stigma","C. Anther","D. Ovary"], answer:"C", explanation:"Anther produces pollen grains."},
-            {id:192, subject:"science", text:"What causes a shadow to form?", options:["A. Light passing through","B. Light being blocked","C. Light bending","D. Light reflecting"], answer:"B", explanation:"Opaque objects block light."},
-            {id:193, subject:"science", text:"Which sense helps us taste food?", options:["A. Hearing","B. Smell","C. Taste","D. Touch"], answer:"C", explanation:"Taste buds on tongue."},
-            {id:194, subject:"science", text:"What is the main source of vitamin D?", options:["A. Sunlight on skin","B. Meat","C. Bread","D. Sugar"], answer:"A", explanation:"Sunlight helps body make vitamin D."},
-            {id:195, subject:"science", text:"Which gas do humans breathe out?", options:["A. Oxygen","B. Carbon dioxide","C. Nitrogen","D. Hydrogen"], answer:"B", explanation:"CO₂ from respiration."},
-            {id:196, subject:"science", text:"What do we call the movement of water from roots to leaves?", options:["A. Photosynthesis","B. Transpiration","C. Pollination","D. Germination"], answer:"B", explanation:"Transpiration pulls water up."},
-            {id:197, subject:"science", text:"Which Zambian fish is commonly dried and sold in markets?", options:["A. Tilapia","B. Kapenta","C. Catfish","D. Bream"], answer:"B", explanation:"Kapenta is a staple dried fish."},
-            {id:198, subject:"science", text:"What is the main function of the skin?", options:["A. Digest food","B. Protect body","C. Pump blood","D. Breathe"], answer:"B", explanation:"Skin protects against germs/injury."},
-            {id:199, subject:"science", text:"Which simple machine is a ramp?", options:["A. Lever","B. Pulley","C. Inclined plane","D. Wheel"], answer:"C", explanation:"Inclined plane reduces lifting effort."},
-            {id:200, subject:"science", text:"Which nutrient is mainly in cooking oil and avocados?", options:["A. Proteins","B. Carbohydrates","C. Fats","D. Vitamins"], answer:"C", explanation:"Fats provide energy and warmth."},
-            {id:201, subject:"science", text:"What do we call the young stage of a butterfly?", options:["A. Tadpole","B. Larva/caterpillar","C. Pupa","D. Nymph"], answer:"B", explanation:"Caterpillar → pupa → butterfly."},
-            {id:202, subject:"science", text:"Which organ helps us smell?", options:["A. Tongue","B. Nose","C. Ears","D. Eyes"], answer:"B", explanation:"Nose detects odours."},
-            {id:203, subject:"science", text:"What causes rain to fall from clouds?", options:["A. Evaporation","B. Condensation and precipitation","C. Melting","D. Freezing"], answer:"B", explanation:"Water droplets become heavy and fall."},
-            {id:204, subject:"science", text:"Which animal is the fastest runner in Zambia?", options:["A. Lion","B. Cheetah","C. Elephant","D. Hippo"], answer:"B", explanation:"Cheetah (though rare in Zambia)."},
-            {id:205, subject:"science", text:"Which food helps prevent goitre?", options:["A. Iodised salt","B. White sugar","C. Cooking oil","D. White rice"], answer:"A", explanation:"Iodine prevents goitre."},
-            {id:206, subject:"science", text:"What is the main job of red blood cells?", options:["A. Fight germs","B. Carry oxygen","C. Clot blood","D. Digest food"], answer:"B", explanation:"Red blood cells transport oxygen."},
-            {id:207, subject:"science", text:"Which simple machine is a bottle opener?", options:["A. Pulley","B. Lever","C. Screw","D. Wedge"], answer:"B", explanation:"Class 2 lever."},
-            {id:208, subject:"science", text:"What do flowers turn into after pollination?", options:["A. Leaves","B. Fruits/seeds","C. Roots","D. Stems"], answer:"B", explanation:"Fruits and seeds develop."},
-            {id:209, subject:"science", text:"Which Zambian province has the highest rainfall?", options:["A. Western","B. Northern","C. North-Western","D. Southern"], answer:"B", explanation:"Northern Province (high rainfall area)."},
-            {id:210, subject:"science", text:"What is the change from gas to liquid called?", options:["A. Evaporation","B. Condensation","C. Freezing","D. Melting"], answer:"B", explanation:"Condensation (e.g. dew)."},
-            {id:211, subject:"science", text:"Which sense organ helps us see colours?", options:["A. Ears","B. Eyes","C. Nose","D. Skin"], answer:"B", explanation:"Eyes detect light and colour."},
-            {id:212, subject:"science", text:"Which nutrient is in eggs and meat?", options:["A. Carbohydrates","B. Proteins","C. Fats only","D. Fibre"], answer:"B", explanation:"Proteins for growth."},
-            {id:213, subject:"science", text:"What do we call plants that grow back every year?", options:["A. Annuals","B. Perennials","C. Biennials","D. Ephemerals"], answer:"B", explanation:"Perennials live multiple years."},
-            {id:214, subject:"science", text:"Which gas is needed for burning?", options:["A. Carbon dioxide","B. Oxygen","C. Nitrogen","D. Helium"], answer:"B", explanation:"Oxygen supports combustion."},
-            {id:215, subject:"science", text:"What is the function of white blood cells?", options:["A. Carry oxygen","B. Fight infection","C. Clot blood","D. Digest food"], answer:"B", explanation:"White blood cells defend against germs."},
-            {id:216, subject:"science", text:"Which Zambian crop is used to make chibwabwa?", options:["A. Maize","B. Pumpkin leaves","C. Cassava","D. Beans"], answer:"B", explanation:"Pumpkin leaves for relish."},
-            {id:217, subject:"science", text:"What causes day and night?", options:["A. Earth rotates","B. Earth revolves","C. Moon orbits","D. Sun moves"], answer:"A", explanation:"Earth’s rotation on axis."},
-            {id:218, subject:"science", text:"Which simple machine is a seesaw?", options:["A. Pulley","B. Lever","C. Inclined plane","D. Wheel"], answer:"B", explanation:"Class 1 lever."},
-            {id:219, subject:"science", text:"What do insects use to breathe?", options:["A. Lungs","B. Spiracles/tracheae","C. Gills","D. Skin"], answer:"B", explanation:"Spiracles lead to tracheae."},
-            {id:220, subject:"science", text:"Which vitamin comes from sunlight?", options:["A. Vitamin A","B. Vitamin B","C. Vitamin C","D. Vitamin D"], answer:"D", explanation:"Vitamin D from sun exposure."},
-            {id:221, subject:"science", text:"What is the main source of energy in food chains?", options:["A. Animals","B. Plants","C. Sun","D. Soil"], answer:"C", explanation:"Sun → plants → animals."},
-            {id:222, subject:"science", text:"Which disease is caused by lack of protein?", options:["A. Kwashiorkor","B. Scurvy","C. Rickets","D. Anaemia"], answer:"A", explanation:"Kwashiorkor from protein deficiency."},
-            {id:223, subject:"science", text:"What do we call the process plants use to make food?", options:["A. Respiration","B. Photosynthesis","C. Digestion","D. Transpiration"], answer:"B", explanation:"Photosynthesis."},
-            {id:224, subject:"science", text:"Which Zambian reptile is long and legless?", options:["A. Crocodile","B. Snake","C. Lizard","D. Tortoise"], answer:"B", explanation:"Snake."},
-            {id:225, subject:"science", text:"What helps blood clot when we cut ourselves?", options:["A. Red blood cells","B. Platelets","C. White blood cells","D. Plasma"], answer:"B", explanation:"Platelets form clots."},
-            {id:226, subject:"science", text:"Which part of the ear helps us balance?", options:["A. Eardrum","B. Inner ear","C. Ear canal","D. Earlobe"], answer:"B", explanation:"Inner ear (semicircular canals)."},
-            {id:227, subject:"science", text:"What is the main function of the stomach?", options:["A. Breathe","B. Digest food","C. Pump blood","D. Filter urine"], answer:"B", explanation:"Stomach breaks down food."},
-            {id:228, subject:"science", text:"Which crop is grown mainly for oil in Zambia?", options:["A. Maize","B. Sunflower","C. Cassava","D. Sorghum"], answer:"B", explanation:"Sunflower for cooking oil."},
-            {id:229, subject:"science", text:"What do we call water falling from clouds?", options:["A. Evaporation","B. Precipitation","C. Condensation","D. Collection"], answer:"B", explanation:"Rain, snow, hail = precipitation."},
-            {id:230, subject:"science", text:"Which animal uses echolocation to find food?", options:["A. Bat","B. Eagle","C. Elephant","D. Zebra"], answer:"A", explanation:"Bats use sound waves."},
-            {id:231, subject:"science", text:"Which mineral is needed for healthy teeth?", options:["A. Iron","B. Calcium","C. Iodine","D. Sodium"], answer:"B", explanation:"Calcium for teeth and bones."},
-            {id:232, subject:"science", text:"What is the change from liquid to solid called?", options:["A. Melting","B. Freezing","C. Evaporation","D. Condensation"], answer:"B", explanation:"Freezing (e.g. water to ice)."},
-            {id:233, subject:"science", text:"Which Zambian mammal has a long neck?", options:["A. Giraffe","B. Lion","C. Hippopotamus","D. Rhino"], answer:"A", explanation:"Giraffe."},
-            {id:234, subject:"science", text:"What is the role of chlorophyll in plants?", options:["A. Absorb water","B. Trap sunlight","C. Store sugar","D. Release carbon dioxide"], answer:"B", explanation:"Chlorophyll captures light energy."},
-            {id:235, subject:"science", text:"Which disease is spread by flies landing on food?", options:["A. Malaria","B. Typhoid","C. Tuberculosis","D. Asthma"], answer:"B", explanation:"Typhoid through contaminated food/water."},
-            {id:236, subject:"science", text:"What do we call animals without backbones?", options:["A. Vertebrates","B. Invertebrates","C. Mammals","D. Reptiles"], answer:"B", explanation:"Invertebrates (e.g. insects, worms)."},
-            {id:237, subject:"science", text:"Which simple machine is a bicycle?", options:["A. Lever","B. Wheel and axle","C. Pulley","D. Wedge"], answer:"B", explanation:"Wheel and axle reduce friction."},
-            {id:238, subject:"science", text:"What is the main function of the brain?", options:["A. Digest food","B. Control body","C. Pump blood","D. Breathe"], answer:"B", explanation:"Brain controls thinking and actions."},
-            {id:239, subject:"science", text:"Which gas makes up most of the air?", options:["A. Oxygen","B. Nitrogen","C. Carbon dioxide","D. Hydrogen"], answer:"B", explanation:"About 78% nitrogen."},
-            {id:240, subject:"science", text:"Which Zambian fruit is rich in vitamin C?", options:["A. Banana","B. Guava","C. Mango","D. Pawpaw"], answer:"B", explanation:"Guava is very high in vitamin C."},
-            {id:241, subject:"science", text:"What do we call the young stage of a mosquito?", options:["A. Larva","B. Pupa","C. Nymph","D. Caterpillar"], answer:"A", explanation:"Larva (wriggler) in water."},
-            {id:242, subject:"science", text:"Which organ produces bile to digest fats?", options:["A. Stomach","B. Liver","C. Pancreas","D. Intestine"], answer:"B", explanation:"Liver produces bile."},
-            {id:243, subject:"science", text:"What causes thunder?", options:["A. Lightning expanding air","B. Rain falling","C. Wind blowing","D. Clouds colliding"], answer:"A", explanation:"Rapid air expansion from lightning."},
-            {id:244, subject:"science", text:"Which crop is drought-resistant in Zambia?", options:["A. Maize","B. Sorghum","C. Rice","D. Wheat"], answer:"B", explanation:"Sorghum tolerates dry conditions."},
-            {id:245, subject:"science", text:"What is the function of the small intestine?", options:["A. Absorb nutrients","B. Store urine","C. Pump blood","D. Breathe"], answer:"A", explanation:"Nutrient absorption occurs here."},
-            {id:246, subject:"science", text:"Which sense helps us feel hot and cold?", options:["A. Taste","B. Touch","C. Smell","D. Hearing"], answer:"B", explanation:"Touch/skin detects temperature."},
-            {id:247, subject:"science", text:"What do we call plants that live for two years?", options:["A. Annuals","B. Biennials","C. Perennials","D. Ephemerals"], answer:"B", explanation:"Biennials complete life cycle in two years."},
-            {id:248, subject:"science", text:"Which Zambian animal is known for its laugh-like sound?", options:["A. Hyena","B. Lion","C. Leopard","D. Jackal"], answer:"A", explanation:"Spotted hyena."},
-            {id:249, subject:"science", text:"What is the main danger of too much sugar?", options:["A. Strong bones","B. Tooth decay and diabetes","C. Good vision","D. Fast running"], answer:"B", explanation:"Excess sugar harms teeth and health."},
-            {id:250, subject:"science", text:"Which part of a seed grows into roots?", options:["A. Cotyledon","B. Radicle","C. Plumule","D. Seed coat"], answer:"B", explanation:"Radicle becomes the root."},
-            {id:251, subject:"science", text:"What is the function of the large intestine?", options:["A. Absorb water","B. Digest proteins","C. Produce bile","D. Pump blood"], answer:"A", explanation:"Absorbs water from waste."},
-            {id:252, subject:"science", text:"Which simple machine is a fishing rod?", options:["A. Pulley","B. Lever","C. Wheel","D. Screw"], answer:"B", explanation:"Lever (class 3)."},
-            {id:253, subject:"science", text:"What do we call the process of plants losing water vapour?", options:["A. Photosynthesis","B. Transpiration","C. Respiration","D. Germination"], answer:"B", explanation:"Transpiration through stomata."},
-            {id:254, subject:"science", text:"Which Zambian mammal lives mostly in water?", options:["A. Hippopotamus","B. Giraffe","C. Zebra","D. Antelope"], answer:"A", explanation:"Hippo."},
-            {id:255, subject:"science", text:"Which vitamin helps blood clot?", options:["A. Vitamin A","B. Vitamin C","C. Vitamin D","D. Vitamin K"], answer:"D", explanation:"Vitamin K for clotting."},
-            {id:256, subject:"science", text:"What causes lightning?", options:["A. Clouds rubbing","B. Electric charge in clouds","C. Rain falling fast","D. Wind speed"], answer:"B", explanation:"Build-up of static electricity."},
-            {id:257, subject:"science", text:"Which crop is used to make beer in Zambia?", options:["A. Maize","B. Sorghum","C. Cassava","D. Millet"], answer:"B", explanation:"Sorghum for traditional beer."},
-            {id:258, subject:"science", text:"What is the main job of the pancreas?", options:["A. Produce insulin","B. Filter blood","C. Store bile","D. Digest air"], answer:"A", explanation:"Insulin controls blood sugar."},
-            {id:259, subject:"science", text:"Which animal has a pouch for its young?", options:["A. Kangaroo","B. None in Zambia","C. Elephant","D. Lion"], answer:"B", explanation:"No marsupials native to Zambia."},
-            {id:260, subject:"science", text:"What do we call the hard outer covering of a seed?", options:["A. Cotyledon","B. Testa","C. Radicle","D. Plumule"], answer:"B", explanation:"Seed coat/testa."},
-            {id:261, subject:"science", text:"Which sense organ detects sweet, sour, salty tastes?", options:["A. Nose","B. Tongue","C. Ears","D. Skin"], answer:"B", explanation:"Taste buds on tongue."},
-            {id:262, subject:"science", text:"What is the main source of energy for muscles?", options:["A. Vitamins","B. Glucose/carbohydrates","C. Proteins","D. Minerals"], answer:"B", explanation:"Carbohydrates provide quick energy."},
-            {id:263, subject:"science", text:"Which Zambian tree provides gum for chewing?", options:["A. Mopane","B. Acacia","C. Baobab","D. Teak"], answer:"A", explanation:"Mopane worms and gum."},
-            {id:264, subject:"science", text:"What happens when we sweat?", options:["A. Body cools","B. Body heats up","C. Blood thickens","D. Heart slows"], answer:"A", explanation:"Evaporation cools skin."},
-            {id:265, subject:"science", text:"Which simple machine is a door knob?", options:["A. Lever","B. Wheel and axle","C. Pulley","D. Wedge"], answer:"B", explanation:"Wheel and axle."},
-            {id:266, subject:"science", text:"What do we call the movement of pollen to stigma?", options:["A. Fertilisation","B. Pollination","C. Germination","D. Photosynthesis"], answer:"B", explanation:"Pollination."},
-            {id:267, subject:"science", text:"Which disease is caused by too little vitamin D?", options:["A. Rickets","B. Scurvy","C. Beriberi","D. Anaemia"], answer:"A", explanation:"Rickets softens bones."},
-            {id:268, subject:"science", text:"What is the main function of the bladder?", options:["A. Store urine","B. Filter blood","C. Digest food","D. Breathe"], answer:"A", explanation:"Bladder stores urine."},
-            {id:269, subject:"science", text:"Which Zambian insect spins silk?", options:["A. Bee","B. Silkworm (not native)","C. Termite","D. Ant"], answer:"C", explanation:"Termites build mounds (not silk)."},
-            {id:270, subject:"science", text:"What causes hiccups?", options:["A. Stomach spasm","B. Diaphragm spasm","C. Lung collapse","D. Heart beat"], answer:"B", explanation:"Sudden diaphragm contraction."},
-            {id:271, subject:"science", text:"Which part of the plant conducts water and food?", options:["A. Leaves","B. Xylem and phloem","C. Roots only","D. Flowers"], answer:"B", explanation:"Vascular tissues."},
-            {id:272, subject:"science", text:"What is the main danger of burning plastic?", options:["A. Produces good smell","B. Releases toxic smoke","C. Makes light","D. Cools air"], answer:"B", explanation:"Toxic fumes harm lungs."},
-            {id:273, subject:"science", text:"Which animal is cold-blooded and lays eggs?", options:["A. Mammal","B. Bird","C. Reptile","D. Amphibian"], answer:"C", explanation:"Reptiles (e.g. snakes, lizards)."},
-            {id:274, subject:"science", text:"What do we call the process of seeds sprouting?", options:["A. Pollination","B. Germination","C. Photosynthesis","D. Transpiration"], answer:"B", explanation:"Germination."},
-            {id:275, subject:"science", text:"Which Zambian lake is the largest?", options:["A. Kariba","B. Tanganyika","C. Bangweulu","D. Mweru"], answer:"A", explanation:"Lake Kariba (man-made, largest by volume)."},
-            {id:276, subject:"science", text:"What helps us taste different flavours best?", options:["A. Eyes","B. Nose + tongue","C. Ears","D. Skin"], answer:"B", explanation:"Smell enhances taste."},
-            {id:277, subject:"science", text:"Which nutrient is in milk and yoghurt?", options:["A. Carbohydrates","B. Proteins and calcium","C. Fats only","D. Fibre"], answer:"B", explanation:"Good for bones and muscles."},
-            {id:278, subject:"science", text:"What is the function of the ribs?", options:["A. Digest food","B. Protect heart and lungs","C. Pump blood","D. Produce urine"], answer:"B", explanation:"Ribs form protective cage."},
-            {id:279, subject:"science", text:"Which simple machine is a crowbar?", options:["A. Pulley","B. Lever","C. Inclined plane","D. Screw"], answer:"B", explanation:"Class 1 lever."},
-            {id:280, subject:"science", text:"What do we call animals that hunt and eat other animals?", options:["A. Herbivores","B. Carnivores","C. Omnivores","D. Producers"], answer:"B", explanation:"Carnivores (e.g. lions)."},
-            {id:281, subject:"science", text:"Which part of the flower receives pollen?", options:["A. Anther","B. Stigma","C. Petal","D. Ovule"], answer:"B", explanation:"Stigma catches pollen."},
-            {id:282, subject:"science", text:"What causes wind?", options:["A. Earth rotation","B. Uneven heating of air","C. Moon gravity","D. Ocean tides"], answer:"B", explanation:"Air moves from high to low pressure."},
-            {id:283, subject:"science", text:"Which Zambian vegetable is rich in iron?", options:["A. Rape leaves","B. Cabbage","C. Onion","D. Carrot"], answer:"A", explanation:"Dark green leaves like rape."},
-            {id:284, subject:"science", text:"What is the main job of the heart valves?", options:["A. Produce blood","B. Prevent backflow","C. Filter germs","D. Carry oxygen"], answer:"B", explanation:"Valves ensure one-way flow."},
-            {id:285, subject:"science", text:"Which animal changes skin colour for camouflage?", options:["A. Chameleon","B. Lion","C. Elephant","D. Zebra"], answer:"A", explanation:"Chameleon (found in Zambia)."},
-            {id:286, subject:"science", text:"What do we call the hard covering on teeth?", options:["A. Enamel","B. Dentine","C. Pulp","D. Gum"], answer:"A", explanation:"Enamel protects teeth."},
-            {id:287, subject:"science", text:"Which gas do plants take in during photosynthesis?", options:["A. Oxygen","B. Carbon dioxide","C. Nitrogen","D. Hydrogen"], answer:"B", explanation:"CO₂ used to make food."},
-            {id:288, subject:"science", text:"What is the main danger of open defecation?", options:["A. Good smell","B. Spread of germs/disease","C. More food","D. Cleaner water"], answer:"B", explanation:"Causes cholera, diarrhoea."},
-            {id:289, subject:"science", text:"Which simple machine is used in a nutcracker?", options:["A. Pulley","B. Lever","C. Wedge","D. Screw"], answer:"B", explanation:"Class 2 lever."},
-            {id:290, subject:"science", text:"What is the function of saliva in the mouth?", options:["A. Store food","B. Start digestion","C. Produce blood","D. Filter air"], answer:"B", explanation:"Saliva contains enzymes."},
-            {id:291, subject:"science", text:"Which Zambian fruit is yellow and curved?", options:["A. Mango","B. Banana","C. Orange","D. Guava"], answer:"B", explanation:"Banana."},
-            {id:292, subject:"science", text:"What causes the sound of thunder?", options:["A. Lightning flash","B. Rapid air expansion","C. Rain hitting ground","D. Wind speed"], answer:"B", explanation:"Lightning heats air quickly."},
-            {id:293, subject:"science", text:"Which nutrient is in groundnuts?", options:["A. Proteins and fats","B. Carbohydrates only","C. Vitamins only","D. Fibre only"], answer:"A", explanation:"Groundnuts rich in protein & healthy fats."},
-            {id:294, subject:"science", text:"What do we call the process of shedding old skin in snakes?", options:["A. Moulting","B. Hibernation","C. Migration","D. Camouflage"], answer:"A", explanation:"Snakes shed skin (moult)."},
-            {id:295, subject:"science", text:"Which part of the body controls movement?", options:["A. Stomach","B. Brain and nerves","C. Heart","D. Lungs"], answer:"B", explanation:"Nervous system controls muscles."},
-            {id:296, subject:"science", text:"What is the main source of energy in nshima?", options:["A. Proteins","B. Carbohydrates","C. Vitamins","D. Minerals"], answer:"B", explanation:"Maize mealie-meal is mostly starch."},
-            {id:297, subject:"science", text:"Which simple machine is a screw?", options:["A. Lever","B. Inclined plane wrapped around cylinder","C. Pulley","D. Wedge"], answer:"B", explanation:"Screw is an inclined plane."},
-            {id:298, subject:"science", text:"What do we call the breathing holes in insects?", options:["A. Lungs","B. Spiracles","C. Gills","D. Skin pores"], answer:"B", explanation:"Spiracles on body surface."},
-            {id:299, subject:"science", text:"Which disease is prevented by handwashing before eating?", options:["A. Malaria","B. Cholera and diarrhoea","C. Asthma","D. Cancer"], answer:"B", explanation:"Washing removes germs."},
-            {id:300, subject:"science", text:"What is the main function of petals in a flower?", options:["A. Make seeds","B. Attract pollinators","C. Absorb water","D. Store food"], answer:"B", explanation:"Bright petals attract insects/bees."},
-            {id:301, subject:"science", text:"Which organ stores bile?", options:["A. Liver","B. Gallbladder","C. Pancreas","D. Stomach"], answer:"B", explanation:"Gallbladder stores bile."},
-            {id:302, subject:"science", text:"What causes soil erosion?", options:["A. Planting trees","B. Heavy rain and no vegetation","C. Adding fertiliser","D. Building roads"], answer:"B", explanation:"Water washes away topsoil."},
-            {id:303, subject:"science", text:"Which Zambian animal has a horn on its nose?", options:["A. Rhino","B. Elephant","C. Buffalo","D. Giraffe"], answer:"A", explanation:"Rhinoceros (rare in Zambia)."},
-            {id:304, subject:"science", text:"What is the main job of the oesophagus?", options:["A. Digest food","B. Carry food to stomach","C. Absorb nutrients","D. Produce saliva"], answer:"B", explanation:"Food pipe."},
-            {id:305, subject:"science", text:"Which sense helps us feel pain?", options:["A. Taste","B. Touch","C. Smell","D. Hearing"], answer:"B", explanation:"Touch detects pressure and pain."},
-            {id:306, subject:"science", text:"What do we call animals that feed on dead matter?", options:["A. Predators","B. Scavengers","C. Producers","D. Parasites"], answer:"B", explanation:"Scavengers (e.g. vultures)."},
-            {id:307, subject:"science", text:"Which crop is harvested for its leaves in Zambia?", options:["A. Maize","B. Rape","C. Beans","D. Groundnuts"], answer:"B", explanation:"Rape leaves for relish."},
-            {id:308, subject:"science", text:"What is the function of the diaphragm?", options:["A. Digest food","B. Help breathing","C. Filter blood","D. Produce urine"], answer:"B", explanation:"Diaphragm moves during breathing."},
-            {id:309, subject:"science", text:"Which gas do we need to burn charcoal?", options:["A. Nitrogen","B. Oxygen","C. Carbon dioxide","D. Hydrogen"], answer:"B", explanation:"Oxygen needed for combustion."},
-            {id:310, subject:"science", text:"What causes a rainbow?", options:["A. Reflection of light","B. Refraction and dispersion","C. Evaporation","D. Condensation"], answer:"B", explanation:"Light splits in raindrops."},
-            {id:311, subject:"science", text:"Which nutrient is in orange-fleshed sweet potatoes?", options:["A. Vitamin C","B. Vitamin A","C. Iron","D. Calcium"], answer:"B", explanation:"Beta-carotene → vitamin A."},
-            {id:312, subject:"science", text:"What do we call the hard outer layer of teeth?", options:["A. Dentine","B. Enamel","C. Pulp","D. Cementum"], answer:"B", explanation:"Enamel is hardest substance."},
-            {id:313, subject:"science", text:"Which Zambian bird is pink and stands on one leg?", options:["A. Flamingo","B. Pelican","C. Heron","D. Stork"], answer:"A", explanation:"Flamingo."},
-            {id:314, subject:"science", text:"What is the main function of the liver?", options:["A. Store urine","B. Detoxify blood","C. Pump blood","D. Breathe"], answer:"B", explanation:"Liver filters toxins."},
-            {id:315, subject:"science", text:"Which simple machine is used in a flagpole?", options:["A. Lever","B. Pulley","C. Wedge","D. Screw"], answer:"B", explanation:"Pulley raises flag."},
-            {id:316, subject:"science", text:"What do we call the breathing tubes in fish?", options:["A. Lungs","B. Gills","C. Spiracles","D. Tracheae"], answer:"B", explanation:"Gills extract oxygen from water."},
-            {id:317, subject:"science", text:"Which disease is caused by too much sugar over time?", options:["A. Diabetes","B. Malaria","C. Cholera","D. Scurvy"], answer:"A", explanation:"Type 2 diabetes risk."},
-            {id:318, subject:"science", text:"What is the main job of the spinal cord?", options:["A. Digest food","B. Carry messages to/from brain","C. Pump blood","D. Produce urine"], answer:"B", explanation:"Nerve impulses travel here."},
-            {id:319, subject:"science", text:"Which Zambian fruit has many small black seeds?", options:["A. Pawpaw","B. Guava","C. Mango","D. Banana"], answer:"B", explanation:"Guava."},
-            {id:320, subject:"science", text:"What causes a mirror to reflect light?", options:["A. Absorption","B. Smooth shiny surface","C. Refraction","D. Dispersion"], answer:"B", explanation:"Smooth surface reflects rays."},
-            {id:321, subject:"science", text:"Which nutrient is in dark green vegetables?", options:["A. Iron and vitamin A","B. Sugar","C. Fat","D. Protein only"], answer:"A", explanation:"Iron + vitamin A in greens."},
-            {id:322, subject:"science", text:"What do we call the process of making food in green plants?", options:["A. Respiration","B. Photosynthesis","C. Digestion","D. Circulation"], answer:"B", explanation:"Using sunlight to make glucose."},
-            {id:323, subject:"science", text:"Which animal is known for carrying its house?", options:["A. Snail","B. Tortoise","C. Crab","D. All of the above"], answer:"D", explanation:"Shell-carrying animals."},
-            {id:324, subject:"science", text:"What is the main function of the pancreas in digestion?", options:["A. Produce insulin and enzymes","B. Store bile","C. Filter blood","D. Absorb water"], answer:"A", explanation:"Enzymes + insulin."},
-            {id:325, subject:"science", text:"Which simple machine is used in a screw jack?", options:["A. Lever","B. Screw","C. Pulley","D. Wedge"], answer:"B", explanation:"Screw lifts heavy loads."},
-            {id:326, subject:"science", text:"What do we call animals that live in water and on land?", options:["A. Fish","B. Amphibians","C. Reptiles","D. Mammals"], answer:"B", explanation:"Amphibians (frogs)."},
-            {id:327, subject:"science", text:"Which Zambian tree is very thick and stores water?", options:["A. Mopane","B. Baobab","C. Acacia","D. Pine"], answer:"B", explanation:"Baobab (upside-down tree)."},
-            {id:328, subject:"science", text:"What causes night blindness?", options:["A. Lack of vitamin A","B. Lack of vitamin C","C. Too much sugar","D. Too much salt"], answer:"A", explanation:"Vitamin A deficiency."},
-            {id:329, subject:"science", text:"Which part of the flower becomes the fruit?", options:["A. Petal","B. Ovary","C. Anther","D. Stigma"], answer:"B", explanation:"Ovary develops into fruit."},
-            {id:330, subject:"science", text:"What is the main danger of smoking?", options:["A. Fresh breath","B. Lung cancer and heart disease","C. Strong muscles","D. Good vision"], answer:"B", explanation:"Tobacco harms lungs and heart."},
-            {id:331, subject:"science", text:"Which gas do plants give off at night?", options:["A. Oxygen","B. Carbon dioxide","C. Nitrogen","D. Hydrogen"], answer:"B", explanation:"Respiration releases CO₂."},
-            {id:332, subject:"science", text:"What do we call the hard outer covering of insects?", options:["A. Skin","B. Exoskeleton","C. Fur","D. Feathers"], answer:"B", explanation:"Chitin exoskeleton."},
-            {id:333, subject:"science", text:"Which Zambian crop is used to make fritters?", options:["A. Beans","B. Bananas","C. Sweet potatoes","D. Cassava"], answer:"B", explanation:"Banana fritters common."},
-            {id:334, subject:"science", text:"What is the function of the cornea?", options:["A. Focus light","B. Protect eye","C. Produce tears","D. Detect colour"], answer:"B", explanation:"Clear front layer protects eye."},
-            {id:335, subject:"science", text:"Which simple machine is a ramp for loading goods?", options:["A. Lever","B. Inclined plane","C. Pulley","D. Screw"], answer:"B", explanation:"Reduces lifting effort."},
-            {id:336, subject:"science", text:"What do we call the movement of animals to find food/water?", options:["A. Migration","B. Hibernation","C. Moulting","D. Camouflage"], answer:"A", explanation:"Migration (e.g. wildebeest)."},
-            {id:337, subject:"science", text:"Which nutrient is missing in beriberi?", options:["A. Vitamin B1","B. Vitamin C","C. Iron","D. Calcium"], answer:"A", explanation:"Thiamine deficiency."},
-            {id:338, subject:"science", text:"What is the main job of the trachea?", options:["A. Digest food","B. Carry air to lungs","C. Filter blood","D. Produce urine"], answer:"B", explanation:"Windpipe."},
-            {id:339, subject:"science", text:"Which Zambian mammal has a long tongue for termites?", options:["A. Aardvark","B. Anteater","C. Pangolin","D. All similar"], answer:"C", explanation:"Pangolin (scaly anteater)."},
-            {id:340, subject:"science", text:"What causes fainting?", options:["A. Too much oxygen","B. Lack of blood to brain","C. Too much sugar","D. Too much water"], answer:"B", explanation:"Temporary low brain blood flow."},
-            {id:341, subject:"science", text:"Which part of a plant anchors it in soil?", options:["A. Stem","B. Leaves","C. Roots","D. Flowers"], answer:"C", explanation:"Roots hold plant in place."},
-            {id:342, subject:"science", text:"What is the main danger of using dirty cooking utensils?", options:["A. Better taste","B. Food poisoning","C. More nutrition","D. Faster cooking"], answer:"B", explanation:"Germs cause illness."},
-            {id:343, subject:"science", text:"Which animal has scales and breathes with lungs?", options:["A. Fish","B. Snake","C. Frog","D. Crab"], answer:"B", explanation:"Reptiles have lungs."},
-            {id:344, subject:"science", text:"What do we call the first leaves from a seed?", options:["A. True leaves","B. Cotyledons","C. Petals","D. Sepals"], answer:"B", explanation:"Seed leaves."},
-            {id:345, subject:"science", text:"Which Zambian lake has the most fish diversity?", options:["A. Kariba","B. Tanganyika","C. Bangweulu","D. Mweru"], answer:"B", explanation:"Lake Tanganyika."},
-            {id:346, subject:"science", text:"What helps us keep balance when walking?", options:["A. Eyes only","B. Inner ear","C. Tongue","D. Nose"], answer:"B", explanation:"Inner ear balance organs."},
-            {id:347, subject:"science", text:"Which nutrient is missing in pellagra?", options:["A. Vitamin B3","B. Vitamin C","C. Iron","D. Calcium"], answer:"A", explanation:"Niacin deficiency."},
-            {id:348, subject:"science", text:"What is the main job of the gall bladder?", options:["A. Produce bile","B. Store and concentrate bile","C. Digest protein","D. Filter blood"], answer:"B", explanation:"Stores bile from liver."},
-            {id:349, subject:"science", text:"Which simple machine is used in a crane?", options:["A. Lever","B. Pulley system","C. Wedge","D. Screw"], answer:"B", explanation:"Multiple pulleys lift heavy loads."},
-            {id:350, subject:"science", text:"What do we call animals that live in groups?", options:["A. Solitary","B. Social","C. Parasitic","D. Scavenging"], answer:"B", explanation:"Social animals (e.g. lions, elephants)."},
-            {id:351, subject:"science", text:"Which crop is harvested for its seeds in Zambia?", options:["A. Maize","B. Rape","C. Sweet potato","D. Cassava leaves"], answer:"A", explanation:"Maize grains."},
-            {id:352, subject:"science", text:"What is the main job of the red bone marrow?", options:["A. Store fat","B. Produce blood cells","C. Protect organs","D. Digest food"], answer:"B", explanation:"Makes red and white blood cells."},
-            {id:353, subject:"science", text:"Which Zambian animal has a long tail and climbs trees?", options:["A. Monkey","B. Lion","C. Elephant","D. Hippo"], answer:"A", explanation:"Vervet monkey, etc."},
-            {id:354, subject:"science", text:"What causes headaches from loud noise?", options:["A. Ear damage","B. Brain swelling","C. Too much sugar","D. Lack of water"], answer:"A", explanation:"Loud sounds harm hearing."},
-            {id:355, subject:"science", text:"Which part of the flower attracts bees?", options:["A. Sepals","B. Petals","C. Stamens","D. Ovary"], answer:"B", explanation:"Colourful petals."},
-            {id:356, subject:"science", text:"What is the main danger of burning rubbish?", options:["A. Good fertiliser","B. Air pollution and toxins","C. More land","D. Cleaner streets"], answer:"B", explanation:"Smoke contains harmful chemicals."},
-            {id:357, subject:"science", text:"Which animal has a shell and moves slowly?", options:["A. Snail","B. Cheetah","C. Eagle","D. Zebra"], answer:"A", explanation:"Snail."},
-            {id:358, subject:"science", text:"What do we call the energy stored in food?", options:["A. Kinetic","B. Chemical","C. Light","D. Sound"], answer:"B", explanation:"Chemical energy in bonds."},
-            {id:359, subject:"science", text:"Which Zambian vegetable is used in ifisashi?", options:["A. Pumpkin leaves","B. Cabbage","C. Onion","D. Tomato"], answer:"A", explanation:"Pumpkin leaves in peanut sauce."},
-            {id:360, subject:"science", text:"What is the function of the iris?", options:["A. Focus light","B. Control light entry","C. Detect colour","D. Produce tears"], answer:"B", explanation:"Iris adjusts pupil size."},
-            {id:361, subject:"science", text:"Which simple machine is a chisel?", options:["A. Lever","B. Wedge","C. Pulley","D. Wheel"], answer:"B", explanation:"Wedge shape."},
-            {id:362, subject:"science", text:"What do we call animals that suck blood?", options:["A. Parasites","B. Predators","C. Scavengers","D. Producers"], answer:"A", explanation:"Parasites (e.g. ticks, leeches)."},
-            {id:363, subject:"science", text:"Which crop is grown underground in Zambia?", options:["A. Groundnuts","B. Maize","C. Beans","D. Sorghum"], answer:"A", explanation:"Groundnuts (peanuts)."},
-            {id:364, subject:"science", text:"What is the main job of platelets?", options:["A. Carry oxygen","B. Fight germs","C. Clot blood","D. Digest food"], answer:"C", explanation:"Platelets stop bleeding."},
-            {id:365, subject:"science", text:"Which Zambian bird has a large beak for catching fish?", options:["A. Pelican","B. Eagle","C. Owl","D. Sparrow"], answer:"A", explanation:"Pelican."},
-            {id:366, subject:"science", text:"What causes nosebleeds?", options:["A. Too much water","B. Dry air or injury","C. Too much sleep","D. Eating fruit"], answer:"B", explanation:"Dry nasal lining or trauma."},
-            {id:367, subject:"science", text:"Which part of the plant grows towards gravity?", options:["A. Stem","B. Roots","C. Leaves","D. Flowers"], answer:"B", explanation:"Geotropism in roots."},
-            {id:368, subject:"science", text:"What is the main danger of not covering food?", options:["A. Better taste","B. Flies spread germs","C. More vitamins","D. Faster cooking"], answer:"B", explanation:"Contamination by flies."},
-            {id:369, subject:"science", text:"Which animal has fur and feeds milk to young?", options:["A. Fish","B. Mammal","C. Reptile","D. Bird"], answer:"B", explanation:"Mammals."},
-            {id:370, subject:"science", text:"What do we call the energy from moving objects?", options:["A. Potential","B. Kinetic","C. Chemical","D. Nuclear"], answer:"B", explanation:"Kinetic energy."},
-            {id:371, subject:"science", text:"Which Zambian fruit is orange inside?", options:["A. Mango","B. Pawpaw","C. Banana","D. Guava"], answer:"B", explanation:"Pawpaw (papaya)."},
-            {id:372, subject:"science", text:"What causes the sky to look blue?", options:["A. Reflection","B. Scattering of light","C. Absorption","D. Refraction"], answer:"B", explanation:"Blue light scatters most."},
-            {id:373, subject:"science", text:"Which nutrient is in fish oil?", options:["A. Omega-3 fats","B. Sugar","C. Starch","D. Fibre"], answer:"A", explanation:"Healthy fats for heart/brain."},
-            {id:374, subject:"science", text:"What is the function of the pupil?", options:["A. Produce tears","B. Let light enter eye","C. Focus image","D. Detect colour"], answer:"B", explanation:"Pupil is opening in iris."},
-            {id:375, subject:"science", text:"Which simple machine is used in a bicycle pedal?", options:["A. Lever","B. Wheel and axle","C. Pulley","D. Wedge"], answer:"B", explanation:"Pedal turns axle."},
-            {id:376, subject:"science", text:"What do we call animals that eat only meat?", options:["A. Herbivores","B. Carnivores","C. Omnivores","D. Insectivores"], answer:"B", explanation:"Carnivores (e.g. lions)."},
-            {id:377, subject:"science", text:"Which crop is used to make malt for brewing?", options:["A. Maize","B. Barley (imported)","C. Sorghum","D. Cassava"], answer:"C", explanation:"Sorghum for local beer."},
-            {id:378, subject:"science", text:"What is the main job of the veins?", options:["A. Carry blood away from heart","B. Carry blood to heart","C. Filter blood","D. Produce blood"], answer:"B", explanation:"Veins return blood to heart."},
-            {id:379, subject:"science", text:"Which Zambian animal is known for its laugh-like sound?", options:["A. Lion","B. Hyena","C. Leopard","D. Jackal"], answer:"B", explanation:"Spotted hyena."},
-            {id:380, subject:"science", text:"What is the main function of green leaves in a plant?", options:["A. Absorb water","B. Make food","C. Support stem","D. Attract insects"], answer:"B", explanation:"Photosynthesis occurs in leaves."},
-            {id:381, subject:"science", text:"Which organ stores bile?", options:["A. Liver","B. Gallbladder","C. Pancreas","D. Stomach"], answer:"B", explanation:"Gallbladder stores bile."},
-            {id:382, subject:"science", text:"What causes soil erosion?", options:["A. Planting trees","B. Heavy rain and no vegetation","C. Adding fertiliser","D. Building roads"], answer:"B", explanation:"Water washes away topsoil."},
-            {id:383, subject:"science", text:"Which Zambian animal has a horn on its nose?", options:["A. Rhino","B. Elephant","C. Buffalo","D. Giraffe"], answer:"A", explanation:"Rhinoceros (rare in Zambia)."},
-            {id:384, subject:"science", text:"What is the main job of the oesophagus?", options:["A. Digest food","B. Carry food to stomach","C. Absorb nutrients","D. Produce saliva"], answer:"B", explanation:"Food pipe."},
-            {id:385, subject:"science", text:"Which sense helps us feel pain?", options:["A. Taste","B. Touch","C. Smell","D. Hearing"], answer:"B", explanation:"Touch detects pressure and pain."},
-            {id:386, subject:"science", text:"What do we call animals that feed on dead matter?", options:["A. Predators","B. Scavengers","C. Producers","D. Parasites"], answer:"B", explanation:"Scavengers (e.g. vultures)."},
-            {id:387, subject:"science", text:"Which crop is harvested for its leaves in Zambia?", options:["A. Maize","B. Rape","C. Beans","D. Groundnuts"], answer:"B", explanation:"Rape leaves for relish."},
-            {id:388, subject:"science", text:"What is the function of the diaphragm?", options:["A. Digest food","B. Help breathing","C. Filter blood","D. Produce urine"], answer:"B", explanation:"Diaphragm moves during breathing."},
-            {id:389, subject:"science", text:"Which gas do we need to burn charcoal?", options:["A. Nitrogen","B. Oxygen","C. Carbon dioxide","D. Hydrogen"], answer:"B", explanation:"Oxygen needed for combustion."},
-            {id:390, subject:"science", text:"What causes a rainbow?", options:["A. Reflection of light","B. Refraction and dispersion","C. Evaporation","D. Condensation"], answer:"B", explanation:"Light splits in raindrops."},
-            {id:391, subject:"science", text:"Which nutrient is in orange-fleshed sweet potatoes?", options:["A. Vitamin C","B. Vitamin A","C. Iron","D. Calcium"], answer:"B", explanation:"Beta-carotene → vitamin A."},
-            {id:392, subject:"science", text:"What do we call the hard outer layer of teeth?", options:["A. Dentine","B. Enamel","C. Pulp","D. Cementum"], answer:"B", explanation:"Enamel is hardest substance."},
-            {id:393, subject:"science", text:"Which Zambian bird is pink and stands on one leg?", options:["A. Flamingo","B. Pelican","C. Heron","D. Stork"], answer:"A", explanation:"Flamingo."},
-            {id:394, subject:"science", text:"What is the main function of the liver?", options:["A. Store urine","B. Detoxify blood","C. Pump blood","D. Breathe"], answer:"B", explanation:"Liver filters toxins."},
-            {id:395, subject:"science", text:"Which simple machine is used in a flagpole?", options:["A. Lever","B. Pulley","C. Wedge","D. Screw"], answer:"B", explanation:"Pulley raises flag."},
-            {id:396, subject:"science", text:"What do we call the breathing tubes in fish?", options:["A. Lungs","B. Gills","C. Spiracles","D. Tracheae"], answer:"B", explanation:"Gills extract oxygen from water."},
-            {id:397, subject:"science", text:"Which disease is caused by too much sugar over time?", options:["A. Diabetes","B. Malaria","C. Cholera","D. Scurvy"], answer:"A", explanation:"Type 2 diabetes risk."},
-            {id:398, subject:"science", text:"What is the main job of the spinal cord?", options:["A. Digest food","B. Carry messages to/from brain","C. Pump blood","D. Produce urine"], answer:"B", explanation:"Nerve impulses travel here."},
-            {id:399, subject:"science", text:"Which Zambian fruit has many small black seeds?", options:["A. Pawpaw","B. Guava","C. Mango","D. Banana"], answer:"B", explanation:"Guava."},
-                {id:400, subject:"science", text:"What causes a mirror to reflect light?", options:["A. Absorption","B. Smooth shiny surface","C. Refraction","D. Dispersion"], answer:"B", explanation:"Smooth surface reflects rays."}
-            ];
-            // ... all 151–400 from previous message
+
+{ id: 501, subject: "science", text: "Which nutrient is mainly needed for energy and is abundant in nshima?", options: ["A. Proteins", "B. Carbohydrates", "C. Vitamins", "D. Minerals"], answer: "B", explanation: "Carbohydrates (from maize meal) provide quick energy." },
+{ id: 502, subject: "science", text: "What is the function of the heart in the human body?", options: ["A. Filter blood", "B. Pump blood", "C. Digest food", "D. Breathe"], answer: "B", explanation: "The heart pumps oxygenated blood around the body." },
+{ id: 503, subject: "science", text: "Which Zambian crop is grown for its leaves and used in relishes like chibwabwa?", options: ["A. Maize", "B. Pumpkin leaves", "C. Cassava", "D. Beans"], answer: "B", explanation: "Pumpkin leaves are common in Zambian relishes." },
+{ id: 504, subject: "science", text: "What causes malaria in Zambia?", options: ["A. Dirty water", "B. Mosquito bite", "C. Bad food", "D. Cold weather"], answer: "B", explanation: "Plasmodium parasite is transmitted by female Anopheles mosquitoes." },
+{ id: 505, subject: "science", text: "Which part of the plant conducts water from roots to leaves?", options: ["A. Phloem", "B. Xylem", "C. Stomata", "D. Petals"], answer: "B", explanation: "Xylem transports water and minerals upwards." },
+{ id: 506, subject: "science", text: "What is the boiling point of water at sea level?", options: ["A. 0°C", "B. 50°C", "C. 100°C", "D. 212°C"], answer: "C", explanation: "Water boils at 100°C under normal pressure." },
+{ id: 507, subject: "science", text: "Which sense organ helps detect sweet, sour, salty, and bitter tastes?", options: ["A. Eyes", "B. Tongue", "C. Ears", "D. Nose"], answer: "B", explanation: "Taste buds on the tongue detect flavours." },
+{ id: 508, subject: "science", text: "What is the main danger of open defecation in rural Zambia?", options: ["A. Better soil", "B. Spread of cholera and diarrhoea", "C. More flies", "D. Cleaner air"], answer: "B", explanation: "Faeces contaminate water and food sources, spreading diseases." },
+{ id: 509, subject: "science", text: "Which gas do plants release during photosynthesis?", options: ["A. Carbon dioxide", "B. Oxygen", "C. Nitrogen", "D. Hydrogen"], answer: "B", explanation: "Photosynthesis produces oxygen as a by-product." },
+{ id: 510, subject: "science", text: "What is the young stage of a mosquito called?", options: ["A. Pupa", "B. Larva (wriggler)", "C. Adult", "D. Egg"], answer: "B", explanation: "Larva lives in water and is the wriggling stage." },
+{ id: 511, subject: "science", text: "Which simple machine is used to raise water from a borehole using a rope?", options: ["A. Lever", "B. Pulley", "C. Inclined plane", "D. Wedge"], answer: "B", explanation: "Pulley changes direction of force." },
+{ id: 512, subject: "science", text: "What helps prevent scurvy in the diet?", options: ["A. Vitamin A", "B. Vitamin C", "C. Vitamin D", "D. Iron"], answer: "B", explanation: "Vitamin C (from fruits like oranges, guavas) prevents scurvy." },
+{ id: 513, subject: "science", text: "Which Zambian national park is home to Victoria Falls?", options: ["A. Kafue", "B. South Luangwa", "C. Mosi-oa-Tunya", "D. Lower Zambezi"], answer: "C", explanation: "Mosi-oa-Tunya protects the falls." },
+{ id: 514, subject: "science", text: "What is the main function of the kidneys?", options: ["A. Pump blood", "B. Filter waste from blood", "C. Digest proteins", "D. Produce bile"], answer: "B", explanation: "Kidneys remove urea and excess water." },
+{ id: 515, subject: "science", text: "Which process turns liquid water into vapour?", options: ["A. Condensation", "B. Evaporation", "C. Freezing", "D. Melting"], answer: "B", explanation: "Evaporation occurs when heat is added." },
+{ id: 516, subject: "science", text: "What is a balanced meal in Zambia typically made of?", options: ["A. Nshima + relish + protein source", "B. Only sweets", "C. Only fruits", "D. Only water"], answer: "A", explanation: "Includes carbohydrates, proteins, vitamins/minerals." },
+{ id: 517, subject: "science", text: "Which animal is a herbivore commonly kept in Zambian villages?", options: ["A. Lion", "B. Goat", "C. Crocodile", "D. Eagle"], answer: "B", explanation: "Goats eat plants only." },
+{ id: 518, subject: "science", text: "What causes day and night on Earth?", options: ["A. Earth's revolution", "B. Earth's rotation", "C. Moon's orbit", "D. Sun moving"], answer: "B", explanation: "Rotation on axis causes day/night." },
+{ id: 519, subject: "science", text: "Which vitamin is produced when skin is exposed to sunlight?", options: ["A. Vitamin A", "B. Vitamin B", "C. Vitamin C", "D. Vitamin D"], answer: "D", explanation: "Sunlight helps synthesize vitamin D." },
+{ id: 520, subject: "science", text: "What is the role of decomposers in the environment?", options: ["A. Hunt prey", "B. Break down dead matter", "C. Make food", "D. Pollinate flowers"], answer: "B", explanation: "Decomposers recycle nutrients." },
+{ id: 521, subject: "science", text: "Which Zambian fish is rich in protein and often dried?", options: ["A. Tilapia", "B. Kapenta", "C. Catfish", "D. Bream"], answer: "B", explanation: "Kapenta is a staple dried fish." },
+{ id: 522, subject: "science", text: "What happens during respiration in humans?", options: ["A. Oxygen in, CO₂ out", "B. CO₂ in, oxygen out", "C. Food made", "D. Water evaporated"], answer: "A", explanation: "Cells use oxygen to release energy, produce CO₂." },
+{ id: 523, subject: "science", text: "Which simple machine is a hoe when digging soil?", options: ["A. Pulley", "B. Lever", "C. Screw", "D. Wheel"], answer: "B", explanation: "Hoe acts as a lever." },
+{ id: 524, subject: "science", text: "What is the main source of proteins for many Zambian families?", options: ["A. Nshima", "B. Beans and kapenta", "C. Bananas", "D. Sugar"], answer: "B", explanation: "Beans and small fish provide protein." },
+{ id: 525, subject: "science", text: "Which disease is prevented by iodised salt?", options: ["A. Malaria", "B. Goitre", "C. Cholera", "D. Diabetes"], answer: "B", explanation: "Iodine prevents thyroid swelling (goitre)." },
+{ id: 526, subject: "science", text: "What do we call animals without a backbone?", options: ["A. Vertebrates", "B. Invertebrates", "C. Mammals", "D. Birds"], answer: "B", explanation: "E.g. insects, worms." },
+{ id: 527, subject: "science", text: "Which gas supports burning?", options: ["A. Nitrogen", "B. Oxygen", "C. Carbon dioxide", "D. Helium"], answer: "B", explanation: "Oxygen is needed for combustion." },
+{ id: 528, subject: "science", text: "What is the function of chlorophyll in leaves?", options: ["A. Absorb water", "B. Trap sunlight for photosynthesis", "C. Store sugar", "D. Release CO₂"], answer: "B", explanation: "Green pigment captures light energy." },
+{ id: 529, subject: "science", text: "Which Zambian reptile lays eggs on land?", options: ["A. Fish", "B. Crocodile", "C. Frog", "D. Toad"], answer: "B", explanation: "Crocodiles are reptiles." },
+{ id: 530, subject: "science", text: "What causes thunder?", options: ["A. Lightning heating air rapidly", "B. Rain falling", "C. Wind blowing", "D. Clouds colliding"], answer: "A", explanation: "Rapid expansion of air produces sound." },
+{ id: 531, subject: "science", text: "Which food group builds and repairs body tissues?", options: ["A. Carbohydrates", "B. Proteins", "C. Fats", "D. Vitamins"], answer: "B", explanation: "Proteins for growth and repair." },
+{ id: 532, subject: "science", text: "What is the change from gas to liquid called?", options: ["A. Evaporation", "B. Condensation", "C. Freezing", "D. Melting"], answer: "B", explanation: "E.g. dew on grass." },
+{ id: 533, subject: "science", text: "Which organ produces insulin to control blood sugar?", options: ["A. Liver", "B. Pancreas", "C. Stomach", "D. Heart"], answer: "B", explanation: "Pancreas regulates glucose." },
+{ id: 534, subject: "science", text: "What protects the lungs and heart?", options: ["A. Ribs", "B. Skull", "C. Spine", "D. Pelvis"], answer: "A", explanation: "Ribs form a protective cage." },
+{ id: 535, subject: "science", text: "Which process do plants use to make food?", options: ["A. Respiration", "B. Photosynthesis", "C. Digestion", "D. Transpiration"], answer: "B", explanation: "Sunlight + CO₂ + water → glucose + oxygen." },
+{ id: 536, subject: "science", text: "What is the main danger of drinking untreated river water?", options: ["A. Too sweet", "B. Germs causing diarrhoea", "C. Too salty", "D. No colour"], answer: "B", explanation: "Contaminated water spreads diseases like cholera." },
+{ id: 537, subject: "science", text: "Which Zambian tree stores water in its trunk?", options: ["A. Mopane", "B. Baobab", "C. Acacia", "D. Pine"], answer: "B", explanation: "Baobab is known as the 'upside-down tree'." },
+{ id: 538, subject: "science", text: "What do platelets in blood help with?", options: ["A. Carry oxygen", "B. Fight germs", "C. Clot blood", "D. Digest food"], answer: "C", explanation: "Platelets stop bleeding by forming clots." },
+{ id: 539, subject: "science", text: "Which sense helps us maintain balance?", options: ["A. Eyes", "B. Inner ear", "C. Tongue", "D. Skin"], answer: "B", explanation: "Semicircular canals in inner ear detect movement." },
+{ id: 540, subject: "science", text: "What is the main source of energy for all food chains?", options: ["A. Animals", "B. Plants", "C. Sun", "D. Soil"], answer: "C", explanation: "Sun → plants (producers) → consumers." },
+{ id: 541, subject: "science", text: "Which disease is caused by lack of iron?", options: ["A. Kwashiorkor", "B. Anaemia", "C. Rickets", "D. Scurvy"], answer: "B", explanation: "Iron deficiency leads to low red blood cells." },
+{ id: 542, subject: "science", text: "What do roots do for a plant?", options: ["A. Make food", "B. Absorb water and minerals", "C. Attract insects", "D. Produce flowers"], answer: "B", explanation: "Roots anchor and take in nutrients." },
+{ id: 543, subject: "science", text: "Which Zambian mammal has stripes and is a herbivore?", options: ["A. Lion", "B. Zebra", "C. Elephant", "D. Hippo"], answer: "B", explanation: "Zebra has black and white stripes." },
+{ id: 544, subject: "science", text: "What causes rainbows?", options: ["A. Reflection only", "B. Refraction and dispersion of light", "C. Evaporation", "D. Condensation"], answer: "B", explanation: "Light bends and splits in raindrops." },
+{ id: 545, subject: "science", text: "Which simple machine is a ramp?", options: ["A. Lever", "B. Inclined plane", "C. Pulley", "D. Screw"], answer: "B", explanation: "Inclined plane reduces lifting effort." },
+{ id: 546, subject: "science", text: "What is the function of white blood cells?", options: ["A. Carry oxygen", "B. Fight infection", "C. Clot blood", "D. Transport food"], answer: "B", explanation: "White blood cells defend against germs." },
+{ id: 547, subject: "science", text: "Which crop is drought-resistant and used for mealie-meal alternative in dry areas?", options: ["A. Maize", "B. Sorghum", "C. Cassava", "D. Rice"], answer: "B", explanation: "Sorghum tolerates low rainfall." },
+{ id: 548, subject: "science", text: "What do we call the breathing holes on an insect's body?", options: ["A. Lungs", "B. Spiracles", "C. Gills", "D. Skin"], answer: "B", explanation: "Spiracles lead to tracheae." },
+{ id: 549, subject: "science", text: "Which part of the eye controls light entry?", options: ["A. Retina", "B. Iris", "C. Lens", "D. Cornea"], answer: "B", explanation: "Iris adjusts pupil size." },
+{ id: 550, subject: "science", text: "What is the main danger of burning plastic waste?", options: ["A. Good smell", "B. Toxic smoke harming lungs", "C. More light", "D. Cooler air"], answer: "B", explanation: "Burning plastic releases harmful chemicals." },
+            // English Grade 7 level – Zambian ECZ-style (grammar, vocab, usage)
+{ id: 2001, subject: "english", text: "Choose the correct sentence.", options: ["A. She go to school every day.", "B. She goes to school every day.", "C. She going to school every day.", "D. She go school every day."], answer: "B", explanation: "Third person singular present tense → goes" },
+{ id: 2002, subject: "english", text: "What is the opposite of 'generous'?", options: ["A. Kind", "B. Stingy", "C. Brave", "D. Happy"], answer: "B", explanation: "Generous = giving; opposite = stingy" },
+{ id: 2003, subject: "english", text: "Which word is a noun?", options: ["A. Run", "B. Beautiful", "C. Lusaka", "D. Quickly"], answer: "C", explanation: "Lusaka is a naming word (proper noun)" },
+{ id: 2004, subject: "english", text: "Fill in: They _____ football yesterday.", options: ["A. play", "B. plays", "C. played", "D. playing"], answer: "C", explanation: "Past tense of play = played" },
+{ id: 2005, subject: "english", text: "What does 'rapid' mean?", options: ["A. Slow", "B. Fast", "C. Big", "D. Small"], answer: "B", explanation: "Rapid = very quick" },
+{ id: 2006, subject: "english", text: "Choose the correct spelling.", options: ["A. Recieve", "B. Receive", "C. Receve", "D. Recive"], answer: "B", explanation: "i before e except after c" },
+{ id: 2007, subject: "english", text: "The boy _____ the ball.", options: ["A. kick", "B. kicks", "C. kicked", "D. kicking"], answer: "B", explanation: "Present simple third person → kicks" },
+{ id: 2008, subject: "english", text: "What is a synonym for 'happy'?", options: ["A. Sad", "B. Joyful", "C. Angry", "D. Tired"], answer: "B", explanation: "Happy = joyful" },
+{ id: 2009, subject: "english", text: "Which is an adverb?", options: ["A. Beautiful", "B. Quickly", "C. Table", "D. Run"], answer: "B", explanation: "Quickly describes how" },
+{ id: 2010, subject: "english", text: "Fill in: This is _____ book.", options: ["A. my", "B. mine", "C. me", "D. I"], answer: "A", explanation: "Possessive adjective = my" },
+{ id: 2011, subject: "english", text: "What is the plural of 'child'?", options: ["A. Childs", "B. Childes", "C. Children", "D. Childrens"], answer: "C", explanation: "Irregular plural = children" },
+{ id: 2012, subject: "english", text: "Choose the correct preposition: She is good _____ English.", options: ["A. in", "B. at", "C. on", "D. with"], answer: "B", explanation: "Good at a subject" },
+{ id: 2013, subject: "english", text: "What does 'brave' mean?", options: ["A. Fearful", "B. Courageous", "C. Weak", "D. Lazy"], answer: "B", explanation: "Brave = showing courage" },
+{ id: 2014, subject: "english", text: "Change to past tense: I eat nshima.", options: ["A. I ate nshima.", "B. I eats nshima.", "C. I eating nshima.", "D. I eated nshima."], answer: "A", explanation: "Past of eat = ate" },
+{ id: 2015, subject: "english", text: "Which is correct?", options: ["A. Between you and I", "B. Between you and me", "C. Between I and you", "D. Between me and you"], answer: "B", explanation: "Object pronoun = me" },
+{ id: 2016, subject: "english", text: "What is the superlative of 'good'?", options: ["A. Better", "B. Best", "C. Goodest", "D. More good"], answer: "B", explanation: "Irregular: good → best" },
+{ id: 2017, subject: "english", text: "Fill in: He is taller _____ me.", options: ["A. then", "B. than", "C. that", "D. as"], answer: "B", explanation: "Comparison → than" },
+{ id: 2018, subject: "english", text: "What does 'ancient' mean?", options: ["A. New", "B. Very old", "C. Modern", "D. Small"], answer: "B", explanation: "Ancient = very old" },
+{ id: 2019, subject: "english", text: "Choose the correct article: _____ elephant is big.", options: ["A. A", "B. An", "C. The", "D. No article"], answer: "B", explanation: "An before vowel sound" },
+{ id: 2020, subject: "english", text: "What is the past participle of 'go'?", options: ["A. Went", "B. Gone", "C. Goed", "D. Going"], answer: "B", explanation: "Have gone" },
+{ id: 2021, subject: "english", text: "Synonym for 'difficult'?", options: ["A. Easy", "B. Hard", "C. Simple", "D. Fast"], answer: "B", explanation: "Difficult = hard" },
+{ id: 2022, subject: "english", text: "Which is correct punctuation?", options: ["A. Whats your name", "B. What's your name?", "C. What,s your name?", "D. What is your name."], answer: "B", explanation: "Question mark + apostrophe in contraction" },
+{ id: 2023, subject: "english", text: "Fill in: We _____ playing since morning.", options: ["A. are", "B. have been", "C. was", "D. is"], answer: "B", explanation: "Present perfect continuous" },
+{ id: 2024, subject: "english", text: "What does 'cautious' mean?", options: ["A. Careless", "B. Careful", "C. Brave", "D. Fast"], answer: "B", explanation: "Cautious = careful" },
+{ id: 2025, subject: "english", text: "Change to passive: They built the house.", options: ["A. The house was built by them.", "B. The house built them.", "C. They was built the house.", "D. House built by they."], answer: "A", explanation: "Object becomes subject + was + past participle" },
+{ id: 2026, subject: "english", text: "Antonym of 'generous'?", options: ["A. Kind", "B. Selfish", "C. Friendly", "D. Polite"], answer: "B", explanation: "Opposite of giving" },
+{ id: 2027, subject: "english", text: "Which is correct?", options: ["A. Less books", "B. Fewer books", "C. Little books", "D. Much books"], answer: "B", explanation: "Fewer for countable nouns" },
+{ id: 2028, subject: "english", text: "What is a 'metaphor'?", options: ["A. Direct comparison using like/as", "B. Comparison without like/as", "C. Exaggeration", "D. Sound word"], answer: "B", explanation: "e.g. Time is money" },
+{ id: 2029, subject: "english", text: "Fill in: Neither the teacher nor the students _____ present.", options: ["A. was", "B. were", "C. is", "D. has"], answer: "B", explanation: "Plural when 'nor' joins plural" },
+{ id: 2030, subject: "english", text: "What does 'abundant' mean?", options: ["A. Scarce", "B. Plenty", "C. Few", "D. Empty"], answer: "B", explanation: "Abundant = a lot" },
+{ id: 2031, subject: "english", text: "Choose correct: He is afraid _____ dogs.", options: ["A. from", "B. of", "C. with", "D. at"], answer: "B", explanation: "Afraid of" },
+{ id: 2032, subject: "english", text: "What is the comparative of 'bad'?", options: ["A. Badder", "B. Worse", "C. More bad", "D. Worst"], answer: "B", explanation: "Irregular: bad → worse" },
+{ id: 2033, subject: "english", text: "Fill in: She sings _____ beautifully.", options: ["A. very", "B. much", "C. more", "D. many"], answer: "A", explanation: "Very + adverb" },
+{ id: 2034, subject: "english", text: "Synonym for 'famous'?", options: ["A. Unknown", "B. Well-known", "C. Hidden", "D. Secret"], answer: "B", explanation: "Famous = well-known" },
+{ id: 2035, subject: "english", text: "Which is correct spelling?", options: ["A. Occasion", "B. Occassion", "C. Ocasion", "D. Occation"], answer: "A", explanation: "Double c, single s" },
+{ id: 2036, subject: "english", text: "Change to indirect speech: He said, 'I am tired.'", options: ["A. He said that he is tired.", "B. He said that he was tired.", "C. He says he is tired.", "D. He said I am tired."], answer: "B", explanation: "Backshift tense" },
+{ id: 2037, subject: "english", text: "What does 'diligent' mean?", options: ["A. Lazy", "B. Hard-working", "C. Careless", "D. Slow"], answer: "B", explanation: "Diligent = hardworking" },
+{ id: 2038, subject: "english", text: "Fill in: This pen is _____ than that one.", options: ["A. good", "B. better", "C. best", "D. more good"], answer: "B", explanation: "Comparative degree" },
+{ id: 2039, subject: "english", text: "Which is an interjection?", options: ["A. Wow!", "B. Run", "C. Beautiful", "D. Table"], answer: "A", explanation: "Wow! shows emotion" },
+{ id: 2040, subject: "english", text: "Correct sentence: The news are good.", options: ["A. The news is good.", "B. The news were good.", "C. News is good.", "D. The news are goods."], answer: "A", explanation: "News is uncountable → is" },
+{ id: 2041, subject: "english", text: "What is the plural of 'mouse'?", options: ["A. Mouses", "B. Mice", "C. Mousees", "D. Mousen"], answer: "B", explanation: "Irregular plural = mice" },
+{ id: 2042, subject: "english", text: "Antonym of 'ancient'?", options: ["A. Old", "B. Modern", "C. Historic", "D. Aged"], answer: "B", explanation: "Opposite of very old" },
+{ id: 2043, subject: "english", text: "Fill in: _____ you like some tea?", options: ["A. Will", "B. Would", "C. Shall", "D. Can"], answer: "B", explanation: "Polite offer → Would" },
+{ id: 2044, subject: "english", text: "What does 'fragile' mean?", options: ["A. Strong", "B. Delicate", "C. Heavy", "D. Big"], answer: "B", explanation: "Fragile = easily broken" },
+{ id: 2045, subject: "english", text: "Choose correct: He has _____ homework.", options: ["A. many", "B. much", "C. few", "D. little"], answer: "B", explanation: "Much for uncountable" },
+{ id: 2046, subject: "english", text: "What is a 'pronoun'?", options: ["A. Action word", "B. Naming word", "C. Replacement for noun", "D. Describing word"], answer: "C", explanation: "He, she, it, etc." },
+{ id: 2047, subject: "english", text: "Correct: Neither John nor Mary _____ coming.", options: ["A. is", "B. are", "C. were", "D. have"], answer: "A", explanation: "Singular verb with 'neither...nor' when subjects mixed but singular focus" },
+{ id: 2048, subject: "english", text: "Synonym for 'obey'?", options: ["A. Disobey", "B. Follow", "C. Ignore", "D. Refuse"], answer: "B", explanation: "Obey = follow rules" },
+{ id: 2049, subject: "english", text: "Fill in: The sun _____ in the east.", options: ["A. rise", "B. rises", "C. rising", "D. rose"], answer: "B", explanation: "Present simple fact → rises" },
+{ id: 2050, subject: "english", text: "What does 'victory' mean?", options: ["A. Defeat", "B. Success in battle/game", "C. Loss", "D. Fight"], answer: "B", explanation: "Victory = winning" },
+            // Add mathematics and english questions when ready
+            // Example math:
+            { id: 1001, subject: "mathematics", text: "What is 15% of 200?", options: ["A. 20", "B. 25", "C. 30", "D. 35"], answer: "C", explanation: "15/100 × 200 = 30" },
+{ id: 1002, subject: "mathematics", text: "Convert 0.75 to a fraction in its simplest form.", options: ["A. 3/5", "B. 3/4", "C. 4/5", "D. 7/10"], answer: "B", explanation: "0.75 = 75/100 = 3/4" },
+{ id: 1003, subject: "mathematics", text: "What is the value of 3 + 5 × 2 – 4?", options: ["A. 9", "B. 13", "C. 6", "D. 12"], answer: "A", explanation: "Follow BODMAS: 5×2=10, then 3+10=13, 13-4=9" },
+{ id: 1004, subject: "mathematics", text: "Which is the smallest fraction? 3/8, 2/5, 1/2, 4/7", options: ["A. 3/8", "B. 2/5", "C. 1/2", "D. 4/7"], answer: "A", explanation: "3/8 = 0.375, 2/5=0.4, 1/2=0.5, 4/7≈0.571 → 3/8 is smallest" },
+{ id: 1005, subject: "mathematics", text: "A bag contains 24 oranges. What fraction is 8 oranges?", options: ["A. 1/4", "B. 1/3", "C. 2/5", "D. 1/2"], answer: "B", explanation: "8/24 = 1/3" },
+{ id: 1006, subject: "mathematics", text: "What is 2.45 × 10?", options: ["A. 24.5", "B. 245", "C. 0.245", "D. 24"], answer: "A", explanation: "Move decimal one place right" },
+{ id: 1007, subject: "mathematics", text: "Find the LCM of 6 and 8.", options: ["A. 12", "B. 24", "C. 48", "D. 2"], answer: "B", explanation: "Least Common Multiple = 24" },
+{ id: 1008, subject: "mathematics", text: "What is the perimeter of a square with side 9 cm?", options: ["A. 18 cm", "B. 36 cm", "C. 81 cm", "D. 27 cm"], answer: "B", explanation: "4 × 9 = 36 cm" },
+{ id: 1009, subject: "mathematics", text: "Convert 3/5 to percentage.", options: ["A. 30%", "B. 50%", "C. 60%", "D. 35%"], answer: "C", explanation: "(3/5) × 100 = 60%" },
+{ id: 1010, subject: "mathematics", text: "If x + 7 = 15, what is x?", options: ["A. 8", "B. 22", "C. 7", "D. 10"], answer: "A", explanation: "x = 15 – 7 = 8" },
+{ id: 1011, subject: "mathematics", text: "What is the area of a rectangle 6 cm long and 4 cm wide?", options: ["A. 10 cm²", "B. 20 cm²", "C. 24 cm²", "D. 28 cm²"], answer: "C", explanation: "length × width = 6 × 4 = 24 cm²" },
+{ id: 1012, subject: "mathematics", text: "Round 8.736 to 2 decimal places.", options: ["A. 8.73", "B. 8.74", "C. 8.7", "D. 9.00"], answer: "B", explanation: "6 is followed by 3 < 5 → no round up, but wait: 8.736 → third digit 6 ≥5 → 8.74" },
+{ id: 1013, subject: "mathematics", text: "What is 4/5 of 30?", options: ["A. 20", "B. 24", "C. 25", "D. 18"], answer: "B", explanation: "(4/5) × 30 = 24" },
+{ id: 1014, subject: "mathematics", text: "Find the HCF of 18 and 24.", options: ["A. 6", "B. 12", "C. 3", "D. 9"], answer: "A", explanation: "Highest Common Factor = 6" },
+{ id: 1015, subject: "mathematics", text: "What is the next number: 5, 10, 20, 40, …?", options: ["A. 50", "B. 60", "C. 80", "D. 45"], answer: "C", explanation: "Each number ×2 → 40×2=80" },
+{ id: 1016, subject: "mathematics", text: "1 litre = ? millilitres", options: ["A. 10 ml", "B. 100 ml", "C. 1000 ml", "D. 10000 ml"], answer: "C", explanation: "1 L = 1000 ml" },
+{ id: 1017, subject: "mathematics", text: "What is 25% as a fraction?", options: ["A. 1/2", "B. 1/4", "C. 3/4", "D. 1/5"], answer: "B", explanation: "25% = 25/100 = 1/4" },
+{ id: 1018, subject: "mathematics", text: "A triangle has angles 50°, 60°. What is the third angle?", options: ["A. 70°", "B. 90°", "C. 80°", "D. 100°"], answer: "A", explanation: "180° – 50° – 60° = 70°" },
+{ id: 1019, subject: "mathematics", text: "Divide 360 by 0.9.", options: ["A. 36", "B. 400", "C. 324", "D. 40"], answer: "B", explanation: "360 ÷ 0.9 = 360 × (10/9) = 400" },
+{ id: 1020, subject: "mathematics", text: "What is the mode of: 3, 7, 5, 3, 8, 3?", options: ["A. 3", "B. 5", "C. 7", "D. 8"], answer: "A", explanation: "3 appears most often" },
+{ id: 1021, subject: "mathematics", text: "Convert 7/20 to decimal.", options: ["A. 0.35", "B. 0.7", "C. 0.25", "D. 0.4"], answer: "A", explanation: "7 ÷ 20 = 0.35" },
+{ id: 1022, subject: "mathematics", text: "If 4 books cost K80, what is the cost of 7 books?", options: ["A. K120", "B. K140", "C. K100", "D. K160"], answer: "B", explanation: "80 ÷ 4 = 20 per book → 7 × 20 = 140" },
+{ id: 1023, subject: "mathematics", text: "What is 2³ × 3²?", options: ["A. 72", "B. 48", "C. 24", "D. 18"], answer: "A", explanation: "8 × 9 = 72" },
+{ id: 1024, subject: "mathematics", text: "The sum of three angles in a triangle is?", options: ["A. 180°", "B. 360°", "C. 90°", "D. 270°"], answer: "A", explanation: "Angle sum property of triangle" },
+{ id: 1025, subject: "mathematics", text: "What is -5 + 12?", options: ["A. 7", "B. -7", "C. 17", "D. -17"], answer: "A", explanation: "12 – 5 = 7" },
+{ id: 1026, subject: "mathematics", text: "A car travels 240 km in 4 hours. What is its speed?", options: ["A. 50 km/h", "B. 60 km/h", "C. 80 km/h", "D. 40 km/h"], answer: "B", explanation: "Distance ÷ Time = 240 ÷ 4 = 60 km/h" },
+{ id: 1027, subject: "mathematics", text: "Simplify 18:24.", options: ["A. 3:4", "B. 2:3", "C. 4:5", "D. 9:12"], answer: "A", explanation: "Divide by 6 → 3:4" },
+{ id: 1028, subject: "mathematics", text: "What is the median of: 4, 7, 2, 9, 5?", options: ["A. 5", "B. 4", "C. 7", "D. 6"], answer: "A", explanation: "Arrange: 2,4,5,7,9 → middle = 5" },
+{ id: 1029, subject: "mathematics", text: "0.06 as fraction is?", options: ["A. 6/100", "B. 3/50", "C. 6/10", "D. 3/5"], answer: "A", explanation: "6/100 = 3/50 (but simplest is 3/50 – wait, question wants 0.06=6/100)" },
+{ id: 1030, subject: "mathematics", text: "What is 5/6 – 1/3?", options: ["A. 1/2", "B. 1/6", "C. 2/3", "D. 4/6"], answer: "A", explanation: "5/6 – 2/6 = 3/6 = 1/2" },
+{ id: 1031, subject: "mathematics", text: "How many sides does a hexagon have?", options: ["A. 5", "B. 6", "C. 7", "D. 8"], answer: "B", explanation: "Hexa = 6" },
+{ id: 1032, subject: "mathematics", text: "K450 is increased by 20%. New amount?", options: ["A. K540", "B. K500", "C. K490", "D. K360"], answer: "A", explanation: "20% of 450 = 90 → 450 + 90 = 540" },
+{ id: 1033, subject: "mathematics", text: "What is the place value of 7 in 4.072?", options: ["A. Tenths", "B. Hundredths", "C. Thousandths", "D. Units"], answer: "C", explanation: "After decimal: 0 tenths, 7 hundredths? Wait – 4.072 → 0 tenths, 7 hundredths, 2 thousandths" },
+{ id: 1034, subject: "mathematics", text: "Find the volume of a cube with side 5 cm.", options: ["A. 25 cm³", "B. 125 cm³", "C. 100 cm³", "D. 150 cm³"], answer: "B", explanation: "5 × 5 × 5 = 125 cm³" },
+{ id: 1035, subject: "mathematics", text: "What is 9 ÷ (3 + 6) × 2?", options: ["A. 2", "B. 3", "C. 6", "D. 1"], answer: "A", explanation: "BODMAS: 3+6=9, 9÷9=1, 1×2=2" },
+{ id: 1036, subject: "mathematics", text: "If 3 : 5 = x : 20, what is x?", options: ["A. 12", "B. 15", "C. 10", "D. 8"], answer: "A", explanation: "Cross multiply: 3×20 = 5×x → x=12" },
+{ id: 1037, subject: "mathematics", text: "What is the Roman numeral for 49?", options: ["A. XLIX", "B. IL", "C. XXXXIX", "D. L"], answer: "A", explanation: "40 + 9 = XL + IX" },
+{ id: 1038, subject: "mathematics", text: "A watch gains 5 minutes every hour. In 6 hours how many minutes?", options: ["A. 25", "B. 30", "C. 35", "D. 20"], answer: "B", explanation: "5 min/hour × 6 = 30 min" },
+{ id: 1039, subject: "mathematics", text: "What is 1.2 kg in grams?", options: ["A. 120 g", "B. 1200 g", "C. 12 g", "D. 12000 g"], answer: "B", explanation: "1.2 × 1000 = 1200 g" },
+{ id: 1040, subject: "mathematics", text: "Simplify 36/48.", options: ["A. 3/4", "B. 2/3", "C. 4/5", "D. 9/12"], answer: "A", explanation: "Divide by 12 → 3/4" },
+{ id: 1041, subject: "mathematics", text: "What is the probability of getting heads when tossing a coin?", options: ["A. 1/4", "B. 1/2", "C. 1/3", "D. 1"], answer: "B", explanation: "1 out of 2 possibilities" },
+{ id: 1042, subject: "mathematics", text: "Find the average of 10, 20, 30, 40.", options: ["A. 25", "B. 30", "C. 100", "D. 20"], answer: "A", explanation: "(10+20+30+40)/4 = 100/4 = 25" },
+{ id: 1043, subject: "mathematics", text: "What is 4000 – 2567?", options: ["A. 1433", "B. 1533", "C. 1343", "D. 1443"], answer: "A", explanation: "4000 – 2567 = 1433" },
+{ id: 1044, subject: "mathematics", text: "Which is a prime number? 15, 17, 21, 25", options: ["A. 15", "B. 17", "C. 21", "D. 25"], answer: "B", explanation: "17 has only two factors: 1 and 17" },
+{ id: 1045, subject: "mathematics", text: "What is ¾ + ⅔?", options: ["A. 5/6", "B. 17/12", "C. 7/5", "D. 13/12"], answer: "D", explanation: "9/12 + 8/12 = 17/12 (improper)" },
+{ id: 1046, subject: "mathematics", text: "A rectangle has length 12 cm, width 5 cm. What is diagonal (approx)?", options: ["A. 13 cm", "B. 17 cm", "C. 10 cm", "D. 15 cm"], answer: "A", explanation: "Pythagoras: √(12² + 5²) = √(144+25)=√169=13" },
+{ id: 1047, subject: "mathematics", text: "What is 0.08 as percentage?", options: ["A. 0.8%", "B. 8%", "C. 80%", "D. 0.08%"], answer: "B", explanation: "0.08 × 100 = 8%" },
+{ id: 1048, subject: "mathematics", text: "If 5 workers finish in 12 days, how many days for 10 workers?", options: ["A. 6", "B. 24", "C. 10", "D. 15"], answer: "A", explanation: "Inverse proportion: 5×12 = 10×d → d=6" },
+{ id: 1049, subject: "mathematics", text: "What is the complement of 65°?", options: ["A. 25°", "B. 115°", "C. 35°", "D. 90°"], answer: "A", explanation: "90° – 65° = 25°" },
+{ id: 1050, subject: "mathematics", text: "Convert 2.5 hours to minutes.", options: ["A. 150 min", "B. 120 min", "C. 180 min", "D. 90 min"], answer: "A", explanation: "2.5 × 60 = 150 min" },
+        ];
     </script>
 </body>
 </html>
