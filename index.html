@@ -3,22 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" sizes="32x32" href="https://cdn-icons-png.flaticon.com/32/2921/2921222.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="https://cdn-icons-png.flaticon.com/16/2921/2921222.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="https://cdn-icons-png.flaticon.com/512/2921/2921222.png">
-    
-    <meta name="theme-color" content="#2a5298">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-
-    <title>Grade 7 Test System</title>
-
+    <title>Grade 7 Test System - Mobile Friendly</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
-
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
         body {
             font-family: 'Poppins', sans-serif;
             background: linear-gradient(135deg, #1e3c72, #2a5298);
@@ -28,17 +16,16 @@
             align-items: flex-start;
             padding: 12px;
             color: #333;
+            -webkit-tap-highlight-color: transparent;
         }
-
         .container {
-            background: rgba(255,255,255,0.97);
+            background: rgba(255, 255, 255, 0.97);
             border-radius: 16px;
             box-shadow: 0 8px 24px rgba(0,0,0,0.15);
             padding: 20px;
             width: 100%;
             max-width: 960px;
         }
-
         .section {
             background: white;
             padding: 20px;
@@ -46,16 +33,13 @@
             border-radius: 12px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.08);
         }
-
         h2, h3 { color: #2a5298; text-align: center; margin-bottom: 16px; font-size: 1.5rem; }
-
         .dashboard-stats {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
             gap: 12px;
             margin: 16px 0;
         }
-
         .stat-card {
             background: #f8f9fa;
             padding: 16px;
@@ -63,12 +47,16 @@
             text-align: center;
             border: 1px solid #e0e0e0;
         }
-
         .stat-card h4 { margin-bottom: 6px; font-size: 0.95rem; color: #555; }
         .stat-card .value { font-size: 1.5rem; font-weight: 600; color: #2a5298; }
-
-        .clock, #timeLeft { font-size: 1.2rem; color: #e74c3c; text-align: center; margin: 12px 0; font-weight: 600; }
-
+        .clock, #timeLeft {
+            font-size: 1.3rem;
+            color: #e74c3c;
+            text-align: center;
+            margin: 12px 0;
+            font-weight: 700;
+            font-family: monospace;
+        }
         input, select, button {
             margin: 12px 0;
             padding: 14px 16px;
@@ -76,8 +64,8 @@
             border: 2px solid #ccc;
             border-radius: 10px;
             font-size: 1rem;
+            transition: all 0.2s;
         }
-
         button {
             background: linear-gradient(45deg, #2a5298, #1e3c72);
             color: white;
@@ -86,71 +74,76 @@
             font-weight: 600;
             min-height: 52px;
         }
-
-        button:disabled { opacity: 0.6; cursor: not-allowed; }
-
-        .hidden { display: none; }
-
-        .question { margin-bottom: 28px; padding: 18px; background: #f9f9f9; border-radius: 12px; font-size: 1.05rem; }
-
-        .option-row { display: flex; align-items: center; margin: 14px 0; cursor: pointer; min-height: 48px; padding: 8px; border-radius: 8px; }
+        button:active { transform: scale(0.97); box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+        .nav-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 20px;
+        }
+        .nav-buttons button { flex: 1; }
+        .hidden { display: none !important; }
+        .question {
+            margin-bottom: 28px;
+            padding: 18px;
+            background: #f9f9f9;
+            border-radius: 12px;
+            font-size: 1.05rem;
+        }
+        .option-row {
+            display: flex;
+            align-items: center;
+            margin: 14px 0;
+            cursor: pointer;
+            min-height: 48px;
+            padding: 8px;
+            border-radius: 8px;
+        }
         .option-row:hover, .option-row:active { background: #e8f0fe; }
-
-        .option-radio { width: 22px; height: 22px; margin-right: 14px; }
-
-        label { flex: 1; font-size: 1rem; }
-
-        .progress-container { height: 10px; background: #e0e0e0; border-radius: 5px; overflow: hidden; margin: 12px 0; }
-        .progress-bar { height: 100%; background: #27ae60; width: 0%; transition: width 0.4s ease; }
-
-        .loading-overlay {
-            position: fixed; inset: 0; background: rgba(0,0,0,0.5); display: flex;
-            align-items: center; justify-content: center; z-index: 9999; color: white; font-size: 1.3rem;
+        .option-radio { width: 22px; height: 22px; margin-right: 14px; flex-shrink: 0; }
+        label { flex: 1; font-size: 1rem; word-break: break-word; }
+        .progress-container {
+            height: 10px;
+            background: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 12px 0;
         }
-
-        .error-message { color: #e74c3c; text-align: center; margin: 10px 0; font-size: 0.95rem; }
-
-        /* Leaderboard */
-        #leaderboardSection { padding: 20px; }
-        .leaderboard-title { margin-bottom: 20px; }
-        .your-rank { text-align: center; font-size: 1.1rem; margin: 12px 0 20px; padding: 12px; background: #e8f0fe; border-radius: 10px; color: #1e3c72; }
-
-        .filter-row { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; }
-        .filter-row select { padding: 12px; }
-
-        #leaderboardTable th, #leaderboardTable td { text-align: center; padding: 12px; border: 1px solid #e0e0e0; }
-        #leaderboardTable .top-3 { font-weight: 600; background: #fffacd; }
-
+        .progress-bar {
+            height: 100%;
+            background: #27ae60;
+            width: 0;
+            transition: width 0.4s ease;
+        }
+        table { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 0.95rem; }
+        th, td { border: 1px solid #e0e0e0; padding: 10px; text-align: left; }
+        th { background: #2a5298; color: white; }
         @media (min-width: 600px) {
-            .filter-row { flex-direction: row; justify-content: center; gap: 20px; }
-            .filter-row select { width: auto; min-width: 180px; }
+            body { padding: 20px; }
+            .container { padding: 32px; }
+            .nav-buttons { flex-direction: row; justify-content: center; }
+            .question { font-size: 1.1rem; }
+            h2 { font-size: 1.8rem; }
+            .stat-card .value { font-size: 1.8rem; }
         }
-
-        @media (max-width: 600px) {
-            #leaderboardTable thead { display: none; }
-            #leaderboardTable tr { display: block; margin-bottom: 16px; border: 1px solid #ddd; border-radius: 8px; }
-            #leaderboardTable td { display: block; text-align: right; border: none; position: relative; padding-left: 50%; }
-            #leaderboardTable td:before { content: attr(data-label); position: absolute; left: 12px; font-weight: bold; color: #2a5298; }
+        @media (min-width: 900px) {
+            .container { max-width: 1100px; }
+            .dashboard-stats { grid-template-columns: repeat(5, 1fr); }
         }
     </style>
 </head>
 <body>
-
-    <div id="loadingOverlay" class="loading-overlay hidden">Loading...</div>
-
     <div class="container">
-
         <!-- Login -->
         <div id="loginSection" class="section">
-            <h2>Login</h2>
+            <h2>Grade 7 Exam Practice</h2>
             <input type="text" id="username" placeholder="Username">
             <input type="password" id="password" placeholder="Password">
             <select id="role">
                 <option value="student">Student</option>
                 <option value="teacher">Teacher</option>
             </select>
-            <button id="loginBtn" onclick="login()">Login</button>
-            <div id="loginError" class="error-message hidden"></div>
+            <button onclick="login()">Login</button>
         </div>
 
         <!-- Student Dashboard -->
@@ -158,33 +151,31 @@
             <h2>Welcome, <span id="studentName"></span></h2>
             <div class="clock" id="liveClock">Loading time...</div>
             <div class="dashboard-stats">
-                <div class="stat-card"><h4>Total Tests Taken</h4><div class="value" id="totalTests">0</div></div>
-                <div class="stat-card"><h4>Total Correct Answers</h4><div class="value" id="totalScore">0</div></div>
-                <div class="stat-card"><h4>Total Reward Earned</h4><div class="value" id="totalReward">K0.00</div></div>
+                <div class="stat-card"><h4>Total Tests</h4><div class="value" id="totalTests">0</div></div>
+                <div class="stat-card"><h4>Total Correct</h4><div class="value" id="totalScore">0</div></div>
+                <div class="stat-card"><h4>Total Reward</h4><div class="value" id="totalReward">K0.00</div></div>
                 <div class="stat-card"><h4>Average Score</h4><div class="value" id="avgScore">0%</div></div>
-                <div class="stat-card"><h4>Last Test Date</h4><div class="value" id="lastTestDate">None</div></div>
+                <div class="stat-card"><h4>Last Test</h4><div class="value" id="lastTestDate">None</div></div>
             </div>
-            <div id="yourRankMini" class="your-rank" style="margin:16px 0; display:none;"></div>
             <button onclick="showSection('testSection')">Start New Test</button>
-            <button onclick="showLeaderboard()">View Global Leaderboard</button>
             <button onclick="logout()" style="background:#e74c3c; margin-top:12px;">Logout</button>
         </div>
 
         <!-- Test Selection -->
         <div id="testSection" class="section hidden">
-            <h2>Start New Test</h2>
+            <h2>Choose Your Test</h2>
             <select id="subject">
                 <option value="">Select Subject</option>
-                <option value="science">Science</option>
+                <option value="science">Integrated Science</option>
                 <option value="mathematics">Mathematics</option>
-                <option value="english">English</option>
+                <option value="english">English Language</option>
             </select>
             <select id="questionsCount">
                 <option value="20">20 Questions (10 min)</option>
                 <option value="30">30 Questions (20 min)</option>
                 <option value="50">50 Questions (30 min)</option>
             </select>
-            <button onclick="startTest()">Start Test</button>
+            <button onclick="startTest()">Begin Test</button>
             <button onclick="showSection('studentDashboard')">Back to Dashboard</button>
         </div>
 
@@ -203,50 +194,10 @@
 
         <!-- Results -->
         <div id="resultsSection" class="section hidden">
-            <h2>Results</h2>
+            <h2>Test Results</h2>
             <div id="resultsDisplay" style="font-size:1.3rem; text-align:center; margin:20px 0;"></div>
             <div id="feedbackContainer" style="max-height:400px; overflow-y:auto; font-size:0.98rem; line-height:1.5;"></div>
             <button onclick="showSection('studentDashboard')">Back to Dashboard</button>
-        </div>
-
-        <!-- Leaderboard -->
-        <div id="leaderboardSection" class="section hidden">
-            <h2 class="leaderboard-title">Global Leaderboard</h2>
-            
-            <div class="filter-row">
-                <select id="leaderboardSubjectFilter" onchange="renderLeaderboard()">
-                    <option value="all">All Subjects</option>
-                    <option value="science">Science</option>
-                    <option value="mathematics">Mathematics</option>
-                    <option value="english">English</option>
-                </select>
-                <select id="leaderboardTimeFilter" onchange="renderLeaderboard()">
-                    <option value="all">All Time</option>
-                    <option value="7days">Last 7 Days</option>
-                    <option value="30days">Last 30 Days</option>
-                    <option value="thisMonth">This Month</option>
-                    <option value="thisYear">This Year</option>
-                </select>
-            </div>
-
-            <div id="yourRankDisplay" class="your-rank"></div>
-
-            <div style="overflow-x:auto;">
-                <table id="leaderboardTable">
-                    <thead>
-                        <tr>
-                            <th>Rank</th>
-                            <th>Username</th>
-                            <th>Total Reward</th>
-                            <th>Avg Score</th>
-                            <th>Tests</th>
-                            <th>Last Test</th>
-                        </tr>
-                    </thead>
-                    <tbody id="leaderboardBody"></tbody>
-                </table>
-            </div>
-            <button onclick="showSection('studentDashboard')" style="margin-top:20px; width:100%;">Back to Dashboard</button>
         </div>
 
         <!-- Teacher Dashboard -->
@@ -258,7 +209,7 @@
                 <input type="password" id="newStudentPassword" placeholder="Password">
                 <button onclick="addStudent()">Create Account</button>
             </div>
-            <h3>Student Performance Overview</h3>
+            <h3>Student Performance Records</h3>
             <div style="overflow-x:auto;">
                 <table id="teacherProgress">
                     <thead>
@@ -276,61 +227,131 @@
             </div>
             <button onclick="logout()" style="margin-top:25px; width:100%; background:#e74c3c;">Logout</button>
         </div>
-
     </div>
 
     <script>
-        const API_URL = 'https://shimba.hjsackmba.workers.dev';
+        // ────────────────────────────────────────────────
+// DATA & STATE
+// ────────────────────────────────────────────────
+let students = JSON.parse(localStorage.getItem('students')) || [
+    { username: 'test', password: 'pass', role: 'student' },
+    { username: 'shimba', password: '1234', role: 'student' }
+];
+let testHistory = JSON.parse(localStorage.getItem('testHistory')) || [];
+let currentQuestions = [];
+let userAnswers = {};
+let currentPage = 0;
+const questionsPerPage = 5;
+let timer;
+let timeLeft = 0;
+let currentUser = null;
 
-        let currentQuestions = [];
-        let userAnswers = {};
-        let currentPage = 0;
-        let questionsPerPage = 5;
-        let timer;
-        let timeLeft = 0;
-        let currentUser = null;
-        let isSubmitting = false;
+// Questions – fixed syntax, commas added, duplicates removed, properly formatted
+const questions = [
+    // ── Integrated Science ───────────────────────────────────────────────
+    { subject: "science", text: "Best way to kill germs in drinking water in a Zambian village?", options: ["A. Adding sugar", "B. Boiling", "C. Adding salt", "D. Leaving in sun"], answer: "B", explanation: "Boiling kills most harmful germs by heating water to high temperatures." },
+    { subject: "science", text: "Which of these is a renewable source of energy commonly used in Zambia?", options: ["A. Coal", "B. Solar power", "C. Petrol", "D. Diesel"], answer: "B", explanation: "Solar power is renewable and widely available in Zambia." },
+    { subject: "science", text: "The main function of roots in a plant is to:", options: ["A. Make food", "B. Absorb water and minerals", "C. Produce flowers", "D. Release oxygen"], answer: "B", explanation: "Roots anchor the plant and absorb water and nutrients from the soil." },
+    { subject: "science", text: "Which blood vessel carries oxygenated blood away from the heart?", options: ["A. Vein", "B. Artery", "C. Capillary", "D. Pulmonary vein"], answer: "B", explanation: "Arteries carry oxygenated blood under high pressure away from the heart." },
+    { subject: "science", text: "What is the main cause of soil erosion in many Zambian farming areas?", options: ["A. Heavy rainfall and deforestation", "B. Excessive fertiliser use", "C. Over-irrigation", "D. Planting cover crops"], answer: "A", explanation: "Removal of vegetation and heavy rain lead to soil being washed away." },
+    { subject: "science", text: "Which instrument is used to measure atmospheric pressure?", options: ["A. Thermometer", "B. Barometer", "C. Anemometer", "D. Hygrometer"], answer: "B", explanation: "A barometer measures air pressure." },
+    { subject: "science", text: "The part of the seed that develops into the root is called the:", options: ["A. Cotyledon", "B. Radicle", "C. Plumule", "D. Testa"], answer: "B", explanation: "The radicle is the embryonic root." },
+    { subject: "science", text: "Which gas makes up the largest percentage of air?", options: ["A. Oxygen", "B. Carbon dioxide", "C. Nitrogen", "D. Argon"], answer: "C", explanation: "Nitrogen makes up about 78% of dry air." },
+    { subject: "science", text: "What type of energy is stored in a stretched rubber band?", options: ["A. Kinetic energy", "B. Potential energy", "C. Heat energy", "D. Chemical energy"], answer: "B", explanation: "Elastic potential energy is stored in stretched objects." },
+    { subject: "science", text: "Which vitamin helps prevent night blindness and is found in carrots?", options: ["A. Vitamin C", "B. Vitamin A", "C. Vitamin D", "D. Vitamin B"], answer: "B", explanation: "Vitamin A is essential for good vision, especially in low light." },
+    { subject: "science", text: "The process of changing from liquid to gas is called:", options: ["A. Condensation", "B. Evaporation", "C. Freezing", "D. Melting"], answer: "B", explanation: "Evaporation occurs when liquid turns into vapour." },
+    { subject: "science", text: "Which animal is a mammal that lays eggs?", options: ["A. Crocodile", "B. Platypus", "C. Python", "D. Eagle"], answer: "B", explanation: "The platypus is one of the few egg-laying mammals." },
+    { subject: "science", text: "What is the main function of white blood cells?", options: ["A. Carry oxygen", "B. Fight infection", "C. Clot blood", "D. Transport nutrients"], answer: "B", explanation: "White blood cells help defend the body against pathogens." },
+    { subject: "science", text: "Which layer of the atmosphere contains the ozone layer?", options: ["A. Troposphere", "B. Stratosphere", "C. Mesosphere", "D. Thermosphere"], answer: "B", explanation: "The ozone layer is in the stratosphere and protects us from UV rays." },
+    { subject: "science", text: "The main source of food for animals in a food chain is:", options: ["A. Carnivores", "B. Producers", "C. Decomposers", "D. Herbivores"], answer: "B", explanation: "Plants (producers) make food through photosynthesis." },
+    { subject: "science", text: "Which metal is a good conductor of electricity and commonly used in wires?", options: ["A. Iron", "B. Copper", "C. Aluminium", "D. Lead"], answer: "B", explanation: "Copper is an excellent conductor and is widely used." },
+    { subject: "science", text: "What causes a rainbow to form?", options: ["A. Reflection of light only", "B. Refraction and dispersion of light in water droplets", "C. Absorption of light", "D. Scattering of sound waves"], answer: "B", explanation: "Rainbows form when sunlight is refracted, reflected, and dispersed in raindrops." },
+    { subject: "science", text: "Which part of a flower becomes the fruit after fertilisation?", options: ["A. Stigma", "B. Ovary", "C. Anther", "D. Petal"], answer: "B", explanation: "The ovary develops into the fruit containing seeds." },
+    { subject: "science", text: "The SI unit of force is the:", options: ["A. Joule", "B. Newton", "C. Watt", "D. Pascal"], answer: "B", explanation: "Force is measured in newtons (N)." },
+    { subject: "science", text: "Which disease is caused by lack of iodine in the diet?", options: ["A. Rickets", "B. Goitre", "C. Scurvy", "D. Beriberi"], answer: "B", explanation: "Iodine deficiency leads to goitre (enlarged thyroid)." },
+    { subject: "science", text: "What type of mirror is used in car side mirrors to give a wider view?", options: ["A. Plane mirror", "B. Concave mirror", "C. Convex mirror", "D. Parabolic mirror"], answer: "C", explanation: "Convex mirrors provide a wider field of view." },
+    { subject: "science", text: "Main function of the heart in the human body?", options: ["A. Digesting food", "B. Pumping blood", "C. Breathing air", "D. Storing urine"], answer: "B", explanation: "The heart pumps oxygenated blood to the body and deoxygenated blood to the lungs." },
+    { subject: "science", text: "Which gas do plants take in during photosynthesis?", options: ["A. Oxygen", "B. Carbon dioxide", "C. Nitrogen", "D. Hydrogen"], answer: "B", explanation: "Plants use carbon dioxide and sunlight to produce food and release oxygen." },
+    { subject: "science", text: "The process by which plants lose water through leaves is called:", options: ["A. Transpiration", "B. Photosynthesis", "C. Respiration", "D. Germination"], answer: "A", explanation: "Transpiration helps plants move water and nutrients from roots to leaves." },
+    { subject: "science", text: "Which part of the eye controls the amount of light entering?", options: ["A. Retina", "B. Iris", "C. Cornea", "D. Lens"], answer: "B", explanation: "The iris adjusts the pupil size to control light entry." },
+    { subject: "science", text: "What is the main source of energy for Earth's climate system?", options: ["A. Moon", "B. Sun", "C. Wind", "D. Oceans"], answer: "B", explanation: "The Sun provides the primary energy through radiation." },
+    { subject: "science", text: "Which simple machine is used to lift heavy loads with less effort?", options: ["A. Wheel and axle", "B. Pulley", "C. Inclined plane", "D. Lever"], answer: "B", explanation: "A pulley changes the direction of force and can reduce effort." },
+    { subject: "science", text: "The breaking down of food in the body to release energy is called:", options: ["A. Digestion", "B. Respiration", "C. Egestion", "D. Assimilation"], answer: "B", explanation: "Cellular respiration releases energy from food." },
+    { subject: "science", text: "Which soil type holds the most water but drains poorly?", options: ["A. Sandy", "B. Clay", "C. Loamy", "D. Silt"], answer: "B", explanation: "Clay soil has small particles that retain water." },
+    { subject: "science", text: "What causes day and night on Earth?", options: ["A. Earth's rotation", "B. Earth's revolution", "C. Moon's orbit", "D. Tilt of Earth's axis"], answer: "A", explanation: "Earth's rotation on its axis causes day and night." },
+    { subject: "science", text: "Which disease is spread by mosquitoes in Zambia?", options: ["A. Tuberculosis", "B. Malaria", "C. Cholera", "D. Measles"], answer: "B", explanation: "Malaria is transmitted by female Anopheles mosquitoes." },
+    { subject: "science", text: "The unit used to measure electric current is:", options: ["A. Volt", "B. Ampere", "C. Watt", "D. Ohm"], answer: "B", explanation: "Ampere measures the flow of electric charge." },
+    { subject: "science", text: "Which organ in the digestive system absorbs most nutrients?", options: ["A. Stomach", "B. Small intestine", "C. Large intestine", "D. Liver"], answer: "B", explanation: "The small intestine has villi for nutrient absorption." },
 
-        let testHistory = JSON.parse(localStorage.getItem('testHistory')) || [];
+    // ── Mathematics ───────────────────────────────────────────────────────
+    { subject: "mathematics", text: "What is 25% of 200?", options: ["A. 25", "B. 50", "C. 75", "D. 100"], answer: "B", explanation: "25% = 0.25; 0.25 × 200 = 50." },
+    { subject: "mathematics", text: "What is 15% of 400?", options: ["A. 40", "B. 50", "C. 60", "D. 80"], answer: "C", explanation: "15% = 0.15; 0.15 × 400 = 60." },
+    { subject: "mathematics", text: "Simplify 2/5 + 3/10", options: ["A. 5/10", "B. 7/10", "C. 1/2", "D. 5/15"], answer: "B", explanation: "2/5 = 4/10; 4/10 + 3/10 = 7/10." },
+    { subject: "mathematics", text: "A bicycle costs K1,200. It is sold at a 25% loss. Selling price?", options: ["A. K900", "B. K1,500", "C. K960", "D. K800"], answer: "A", explanation: "Loss = 25% of 1200 = 300; 1200 – 300 = K900." },
+    { subject: "mathematics", text: "What is the volume of a cube with side length 4 cm?", options: ["A. 16 cm³", "B. 64 cm³", "C. 48 cm³", "D. 32 cm³"], answer: "B", explanation: "Volume = side³ = 4 × 4 × 4 = 64 cm³." },
+    { subject: "mathematics", text: "Solve: 5x – 12 = 23", options: ["A. x = 7", "B. x = 5", "C. x = 35", "D. x = 11"], answer: "A", explanation: "5x = 23 + 12 = 35; x = 35 ÷ 5 = 7." },
+    { subject: "mathematics", text: "The HCF of 18 and 24 is:", options: ["A. 6", "B. 12", "C. 3", "D. 9"], answer: "A", explanation: "Highest Common Factor of 18 and 24 is 6." },
+    { subject: "mathematics", text: "Convert 3.25 to a fraction in its simplest form.", options: ["A. 13/4", "B. 65/20", "C. 325/100", "D. 13/5"], answer: "A", explanation: "3.25 = 325/100 = 13/4." },
+    { subject: "mathematics", text: "A rectangle has length 12 cm and width 5 cm. What is its area?", options: ["A. 60 cm²", "B. 34 cm²", "C. 17 cm²", "D. 120 cm²"], answer: "A", explanation: "Area = length × width = 12 × 5 = 60 cm²." },
+    { subject: "mathematics", text: "What is the median of: 4, 7, 2, 9, 5?", options: ["A. 5", "B. 7", "C. 4", "D. 6"], answer: "A", explanation: "Ordered: 2, 4, 5, 7, 9 → middle number is 5." },
+    { subject: "mathematics", text: "If 4 workers build a wall in 6 days, how many days will 8 workers take?", options: ["A. 12 days", "B. 3 days", "C. 4 days", "D. 8 days"], answer: "B", explanation: "More workers → less time: (4 × 6) / 8 = 3 days." },
+    { subject: "mathematics", text: "What is 0.08 as a percentage?", options: ["A. 8%", "B. 0.8%", "C. 80%", "D. 0.08%"], answer: "A", explanation: "0.08 × 100 = 8%." },
+    { subject: "mathematics", text: "The next number in the pattern 3, 7, 12, 18, … is:", options: ["A. 22", "B. 25", "C. 24", "D. 28"], answer: "B", explanation: "Differences increase by 1 each time: +4, +5, +6 → next +7 = 25." },
+    { subject: "mathematics", text: "How many sides does a hexagon have?", options: ["A. 5", "B. 6", "C. 7", "D. 8"], answer: "B", explanation: "Hexagon has six sides." },
+    { subject: "mathematics", text: "What is 450 ÷ 15?", options: ["A. 25", "B. 30", "C. 35", "D. 20"], answer: "B", explanation: "15 × 30 = 450." },
+    { subject: "mathematics", text: "A bag contains 5 red, 3 blue and 2 green marbles. Probability of picking a red marble?", options: ["A. 1/2", "B. 1/3", "C. 5/10", "D. 3/10"], answer: "A", explanation: "5 red out of 10 total = 5/10 = 1/2." },
+    { subject: "mathematics", text: "What is the value of 9² – 5²?", options: ["A. 56", "B. 81", "C. 64", "D. 41"], answer: "A", explanation: "81 – 25 = 56 (difference of squares: (9-5)(9+5) = 4×14 = 56)." },
+    { subject: "mathematics", text: "Convert 2 hours 45 minutes to minutes.", options: ["A. 165 minutes", "B. 135 minutes", "C. 180 minutes", "D. 150 minutes"], answer: "A", explanation: "2 × 60 = 120; 120 + 45 = 165 minutes." },
+    { subject: "mathematics", text: "The perimeter of a square is 48 cm. What is the length of one side?", options: ["A. 8 cm", "B. 12 cm", "C. 16 cm", "D. 24 cm"], answer: "B", explanation: "Perimeter = 4 × side → side = 48 ÷ 4 = 12 cm." },
+    { subject: "mathematics", text: "What is the place value of 7 in 4.073?", options: ["A. Tenths", "B. Hundredths", "C. Thousandths", "D. Units"], answer: "C", explanation: "7 is in the thousandths place (0.001)." },
+    { subject: "mathematics", text: "If a = 4 and b = 7, what is 3a + 2b?", options: ["A. 26", "B. 22", "C. 19", "D. 28"], answer: "A", explanation: "3×4 + 2×7 = 12 + 14 = 26." },
+    { subject: "mathematics", text: "Simplify: 3/4 + 1/2", options: ["A. 5/4", "B. 1 1/4", "C. 1/2", "D. 4/6"], answer: "B", explanation: "3/4 + 2/4 = 5/4 = 1 1/4." },
+    { subject: "mathematics", text: "A farmer has 120 chickens. He sells 45. What percentage remains?", options: ["A. 37.5%", "B. 62.5%", "C. 45%", "D. 55%"], answer: "B", explanation: "75 remain; (75/120) × 100 = 62.5%." },
+    { subject: "mathematics", text: "Perimeter of a rectangle 8 cm long and 5 cm wide?", options: ["A. 13 cm", "B. 26 cm", "C. 40 cm", "D. 18 cm"], answer: "B", explanation: "Perimeter = 2(length + width) = 2(8 + 5) = 26 cm." },
+    { subject: "mathematics", text: "What is the value of 8 × (3 + 5) – 12?", options: ["A. 40", "B. 64", "C. 28", "D. 52"], answer: "D", explanation: "First: 3 + 5 = 8; then 8 × 8 = 64; finally 64 – 12 = 52." },
+    { subject: "mathematics", text: "Convert 3/5 to a decimal.", options: ["A. 0.6", "B. 0.5", "C. 0.35", "D. 0.65"], answer: "A", explanation: "3 ÷ 5 = 0.6." },
+    { subject: "mathematics", text: "If x + 15 = 42, what is x?", options: ["A. 27", "B. 57", "C. 18", "D. 33"], answer: "A", explanation: "x = 42 – 15 = 27." },
+    { subject: "mathematics", text: "The area of a square with side 6 cm is:", options: ["A. 12 cm²", "B. 24 cm²", "C. 36 cm²", "D. 18 cm²"], answer: "C", explanation: "Area = side × side = 6 × 6 = 36 cm²." },
 
-        // ── Loading overlay ──
-        function showLoading(show = true) {
-            document.getElementById('loadingOverlay').classList.toggle('hidden', !show);
-        }
+    // ── English Language ─────────────────────────────────────────────────
+    { subject: "english", text: "Choose the correct adjective: The _______ elephant walked slowly.", options: ["A. big", "B. bigger", "C. biggest", "D. bigly"], answer: "A", explanation: "Big is the positive form needed here." },
+    { subject: "english", text: "Choose the correct form: They _____ football every Saturday.", options: ["A. plays", "B. play", "C. playing", "D. played"], answer: "B", explanation: "Plural subject 'they' takes base form 'play'." },
+    { subject: "english", text: "What is the comparative form of 'good'?", options: ["A. gooder", "B. better", "C. best", "D. more good"], answer: "B", explanation: "Irregular comparative: good → better." },
+    { subject: "english", text: "The boy _____ the ball into the goal.", options: ["A. kick", "B. kicks", "C. kicked", "D. kicking"], answer: "C", explanation: "Past tense of 'kick' is 'kicked'." },
+    { subject: "english", text: "Which word is correctly spelt?", options: ["A. Neccessary", "B. Necessary", "C. Necesary", "D. Neccesary"], answer: "B", explanation: "Necessary has one 'c' and two 's'." },
+    { subject: "english", text: "The opposite of 'ancient' is:", options: ["A. Old", "B. Modern", "C. Historic", "D. Traditional"], answer: "B", explanation: "Modern means new or recent." },
+    { subject: "english", text: "Choose the correct preposition: The cat jumped _____ the table.", options: ["A. on", "B. over", "C. under", "D. in"], answer: "B", explanation: "Jumped over means passing above." },
+    { subject: "english", text: "Which sentence is in the passive voice?", options: ["A. The teacher marked the books", "B. The books were marked by the teacher", "C. The teacher is marking the books", "D. The teacher marks the books"], answer: "B", explanation: "Passive: subject receives the action." },
+    { subject: "english", text: "The plural of 'mouse' is:", options: ["A. Mouses", "B. Mice", "C. Mousees", "D. Mousen"], answer: "B", explanation: "Irregular plural: mouse → mice." },
+    { subject: "english", text: "He is taller _____ his brother.", options: ["A. then", "B. than", "C. that", "D. as"], answer: "B", explanation: "Comparative form uses 'than'." },
+    { subject: "english", text: "Which is a collective noun?", options: ["A. Book", "B. Team", "C. Run", "D. Beautiful"], answer: "B", explanation: "Team is a group name." },
+    { subject: "english", text: "Fill in: I have been waiting _____ two hours.", options: ["A. since", "B. for", "C. at", "D. on"], answer: "B", explanation: "We use 'for' with a period of time." },
+    { subject: "english", text: "The superlative form of 'bad' is:", options: ["A. badder", "B. worse", "C. worst", "D. most bad"], answer: "C", explanation: "Irregular superlative: bad → worst." },
+    { subject: "english", text: "Which word is an interjection?", options: ["A. Wow!", "B. Quickly", "C. Table", "D. And"], answer: "A", explanation: "Wow expresses strong emotion." },
+    { subject: "english", text: "Choose the correct article: _____ sun rises in the east.", options: ["A. A", "B. An", "C. The", "D. No article"], answer: "C", explanation: "We use 'the' for unique things like the sun." },
+    { subject: "english", text: "The boy and his sister _____ going to school.", options: ["A. is", "B. are", "C. was", "D. has"], answer: "B", explanation: "Plural subject takes 'are'." },
+    { subject: "english", text: "What is the past participle of 'write'?", options: ["A. wrote", "B. written", "C. writing", "D. writes"], answer: "B", explanation: "Past participle: write → written." },
+    { subject: "english", text: "Which sentence is correct?", options: ["A. She don't like mangoes", "B. She doesn't like mangoes", "C. She not like mangoes", "D. She isn't like mangoes"], answer: "B", explanation: "Third person singular negative uses 'doesn't'." },
+    { subject: "english", text: "Synonym for 'brave':", options: ["A. Cowardly", "B. Courageous", "C. Weak", "D. Scared"], answer: "B", explanation: "Courageous means showing courage." },
+    { subject: "english", text: "The word 'beautifully' is a(n):", options: ["A. Adjective", "B. Adverb", "C. Noun", "D. Verb"], answer: "B", explanation: "Adverbs often end in -ly and modify verbs." },
+    { subject: "english", text: "Antonym for 'expand':", options: ["A. Grow", "B. Increase", "C. Contract", "D. Stretch"], answer: "C", explanation: "Contract means to become smaller." },
+    { subject: "english", text: "Past tense of 'go'?", options: ["A. Goes", "B. Went", "C. Gone", "D. Going"], answer: "B", explanation: "Went is the irregular past tense." },
+    { subject: "english", text: "She is the girl _______ won the prize.", options: ["A. who", "B. which", "C. whose", "D. whom"], answer: "A", explanation: "Who is the correct subject relative pronoun for people." },
+    { subject: "english", text: "Opposite of 'generous' is:", options: ["A. Kind", "B. Selfish", "C. Brave", "D. Happy"], answer: "B", explanation: "Selfish means unwilling to give or share." },
+    { subject: "english", text: "Choose the correct sentence:", options: ["A. He go to school everyday", "B. He goes to school everyday", "C. He going to school everyday", "D. He gone to school everyday"], answer: "B", explanation: "Third person singular present tense uses 'goes'." },
+    { subject: "english", text: "Synonym for 'happy' is:", options: ["A. Sad", "B. Joyful", "C. Angry", "D. Tired"], answer: "B", explanation: "Joyful means feeling or showing great pleasure." },
+    { subject: "english", text: "The plural of 'child' is:", options: ["A. Childs", "B. Childes", "C. Children", "D. Childrens"], answer: "C", explanation: "Irregular plural: child → children." },
+    { subject: "english", text: "Which word is a noun?", options: ["A. Run", "B. Beautiful", "C. Book", "D. Quickly"], answer: "C", explanation: "Book is a naming word (noun)." },
+    { subject: "english", text: "Fill in: She _____ to the market yesterday.", options: ["A. go", "B. goes", "C. went", "D. going"], answer: "C", explanation: "Past tense of 'go' is 'went'." },
+    { subject: "english", text: "The teacher asked the pupils to _____ quiet.", options: ["A. keep", "B. kept", "C. keeping", "D. keeps"], answer: "A", explanation: "Infinitive form after 'to' is 'keep'." },
+    { subject: "english", text: "Which is an adverb?", options: ["A. Fast", "B. Quickly", "C. Run", "D. Dog"], answer: "B", explanation: "Quickly modifies a verb (how the action is done)." },
+    { subject: "english", text: "Correct spelling:", options: ["A. Recieve", "B. Receive", "C. Recive", "D. Receve"], answer: "B", explanation: "i before e except after c: receive." },
+    { subject: "english", text: "The capital city of Zambia is:", options: ["A. Kitwe", "B. Ndola", "C. Lusaka", "D. Livingstone"], answer: "C", explanation: "Lusaka is the capital and largest city." }
+];
 
-        // ── Safe fetch ──
-        async function fetchWithError(url, options = {}) {
-            try {
-                showLoading(true);
-                const controller = new AbortController();
-                const timeoutId = setTimeout(() => controller.abort(), 10000);
-
-                const response = await fetch(url, {
-                    ...options,
-                    signal: controller.signal,
-                    headers: { 'Content-Type': 'application/json', ...options.headers }
-                });
-
-                clearTimeout(timeoutId);
-
-                if (!response.ok) {
-                    const errText = await response.text().catch(() => '');
-                    throw new Error(`Server error ${response.status}: ${errText || response.statusText}`);
-                }
-
-                return await response.json();
-            } catch (err) {
-                console.error('Fetch error:', err);
-                let msg = 'Network error. Please check your connection.';
-                if (err.name === 'AbortError') msg = 'Request timed out.';
-                alert(msg);
-                return null;
-            } finally {
-                showLoading(false);
-            }
-        }
-
-        // Live clock
+        // ────────────────────────────────────────────────
+        // HELPERS & FUNCTIONS
+        // ────────────────────────────────────────────────
         function updateClock() {
             const now = new Date();
             document.getElementById('liveClock').textContent = now.toLocaleString('en-ZM', {
@@ -341,22 +362,15 @@
         setInterval(updateClock, 1000);
         updateClock();
 
-        async function showSection(id) {
+        function showSection(id) {
             document.querySelectorAll('.section').forEach(el => el.classList.add('hidden'));
             document.getElementById(id).classList.remove('hidden');
-
-            if (id === 'studentDashboard' && currentUser?.role === 'student') {
-                await updateStudentDashboard();
-            }
-            if (id === 'teacherDashboard') {
-                await populateTeacherDashboard();
-            }
-            if (id === 'leaderboardSection') {
-                await renderLeaderboard();
-            }
+            if (id === 'studentDashboard' && currentUser?.role === 'student') updateStudentDashboard();
+            if (id === 'teacherDashboard') populateTeacherDashboard();
         }
 
-        async function updateStudentDashboard() {
+        function updateStudentDashboard() {
+            document.getElementById('studentName').textContent = currentUser.username;
             const myTests = testHistory.filter(t => t.student === currentUser.username);
             const totalTests = myTests.length;
             const totalCorrect = myTests.reduce((sum, t) => sum + t.score, 0);
@@ -370,46 +384,25 @@
             document.getElementById('totalReward').textContent = `K${totalReward.toFixed(2)}`;
             document.getElementById('avgScore').textContent = `${avgScore}%`;
             document.getElementById('lastTestDate').textContent = lastTest;
-
-            const allLb = await calculateLeaderboard('all', 'all');
-            const idx = allLb.findIndex(e => e.username === currentUser.username);
-            const mini = document.getElementById('yourRankMini');
-            if (idx !== -1 && idx < 50) {
-                mini.innerHTML = `Your global rank: <strong>#${idx + 1}</strong> (K${allLb[idx].totalReward.toFixed(2)})`;
-                mini.style.display = 'block';
-            } else {
-                mini.style.display = 'none';
-            }
         }
 
-        async function login() {
-            const btn = document.getElementById('loginBtn');
-            const errEl = document.getElementById('loginError');
-            errEl.classList.add('hidden');
-            btn.disabled = true;
+        function login() {
+            const user = document.getElementById('username').value.trim();
+            const pass = document.getElementById('password').value;
+            const role = document.getElementById('role').value;
 
-            try {
-                const username = document.getElementById('username').value.trim();
-                const password = document.getElementById('password').value;
-                const role = document.getElementById('role').value;
+            if (role === 'teacher' && user === 'admin' && pass === 'admin123') {
+                currentUser = { username: 'admin', role: 'teacher' };
+                showSection('teacherDashboard');
+                return;
+            }
 
-                if (!username || !password) throw new Error('Enter username and password');
-
-                const res = await fetchWithError(`${API_URL}/login`, {
-                    method: 'POST',
-                    body: JSON.stringify({ username, password })
-                });
-
-                if (!res || !res.success) throw new Error(res?.message || 'Login failed');
-
-                currentUser = { username, role };
-                if (role === 'student') await showSection('studentDashboard');
-                if (role === 'teacher') await showSection('teacherDashboard');
-            } catch (e) {
-                errEl.textContent = e.message || 'Login error';
-                errEl.classList.remove('hidden');
-            } finally {
-                btn.disabled = false;
+            const student = students.find(s => s.username === user && s.password === pass);
+            if (student && role === 'student') {
+                currentUser = { ...student, role: 'student' };
+                showSection('studentDashboard');
+            } else {
+                alert("Invalid credentials or wrong role.");
             }
         }
 
@@ -417,20 +410,13 @@
             const subject = document.getElementById('subject').value;
             const count = parseInt(document.getElementById('questionsCount').value);
 
-            if (!subject || !count) {
-                alert("Please select subject and number of questions.");
-                return;
-            }
+            if (!subject || !count) return alert("Please select subject and number of questions.");
 
             let pool = questions.filter(q => q.subject === subject);
-            if (pool.length === 0) {
-                alert("No questions available for this subject yet.");
-                return;
-            }
+            if (pool.length < count) return alert(`Only ${pool.length} questions available for ${subject}.`);
 
-            pool.sort(() => Math.random() - 0.5);
-            currentQuestions = pool.slice(0, Math.min(count, pool.length));
-
+            pool = [...pool].sort(() => Math.random() - 0.5);
+            currentQuestions = pool.slice(0, count);
             userAnswers = {};
             currentPage = 0;
             timeLeft = count === 20 ? 600 : count === 30 ? 1200 : 1800;
@@ -441,6 +427,24 @@
             updateProgressBar();
         }
 
+        function formatTime(seconds) {
+            const m = Math.floor(seconds / 60);
+            const s = seconds % 60;
+            return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+        }
+
+        function startTimer() {
+            document.getElementById('timeLeft').textContent = `Time Left: ${formatTime(timeLeft)}`;
+            timer = setInterval(() => {
+                timeLeft--;
+                document.getElementById('timeLeft').textContent = `Time Left: ${formatTime(timeLeft)}`;
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    submitTest();
+                }
+            }, 1000);
+        }
+
         function displayPage() {
             const start = currentPage * questionsPerPage;
             const end = Math.min(start + questionsPerPage, currentQuestions.length);
@@ -448,16 +452,18 @@
 
             let html = '';
             pageQs.forEach((q, i) => {
-                const idx = start + i;
+                const globalIdx = start + i;
+                const selected = userAnswers[globalIdx];
                 html += `
                     <div class="question">
-                        <p><strong>${idx + 1}. ${q.text}</strong></p>
+                        <p><strong>${globalIdx + 1}. ${q.text}</strong></p>
                         ${q.options.map((opt, j) => {
                             const val = String.fromCharCode(65 + j);
-                            const checked = userAnswers[idx] === val ? 'checked' : '';
+                            const checked = selected === val ? 'checked' : '';
                             return `
                                 <label class="option-row">
-                                    <input type="radio" name="q${idx}" value="${val}" ${checked} onchange="saveAnswer(${idx}, '${val}')" class="option-radio">
+                                    <input type="radio" name="q${globalIdx}" value="${val}" ${checked}
+                                           onchange="saveAnswer(${globalIdx}, '${val}')" class="option-radio">
                                     ${val}. ${opt}
                                 </label>
                             `;
@@ -470,17 +476,15 @@
             document.getElementById('pageInfo').textContent = `Page ${currentPage + 1} of ${Math.ceil(currentQuestions.length / questionsPerPage)}`;
 
             document.getElementById('prevBtn').classList.toggle('hidden', currentPage === 0);
-            const isLast = (currentPage + 1) * questionsPerPage >= currentQuestions.length;
-            document.getElementById('nextBtn').classList.toggle('hidden', isLast);
-            document.getElementById('finishBtn').classList.toggle('hidden', !isLast);
+
+            const isLastPage = (currentPage + 1) * questionsPerPage >= currentQuestions.length;
+            document.getElementById('nextBtn').classList.toggle('hidden', isLastPage);
+            document.getElementById('finishBtn').classList.toggle('hidden', !isLastPage);
         }
 
         function saveAnswer(idx, val) {
             userAnswers[idx] = val;
             updateProgressBar();
-            document.querySelectorAll(`input[name="q${idx}"]`).forEach(r => {
-                r.parentElement.style.background = r.checked ? '#e8f0fe' : '';
-            });
         }
 
         function updateProgressBar() {
@@ -490,8 +494,10 @@
         }
 
         function nextPage() {
-            currentPage++;
-            displayPage();
+            if (currentPage < Math.ceil(currentQuestions.length / questionsPerPage) - 1) {
+                currentPage++;
+                displayPage();
+            }
         }
 
         function previousPage() {
@@ -501,91 +507,60 @@
             }
         }
 
-        function startTimer() {
-            timer = setInterval(() => {
-                timeLeft--;
-                const m = Math.floor(timeLeft / 60);
-                const s = timeLeft % 60;
-                document.getElementById('timeLeft').textContent = `Time Left: ${m}:${s < 10 ? '0' : ''}${s}`;
-                if (timeLeft <= 0) {
-                    clearInterval(timer);
-                    submitTest();
+        function submitTest() {
+            if (timer) clearInterval(timer);
+
+            let score = 0;
+            currentQuestions.forEach((q, i) => {
+                if (userAnswers[i] === q.answer) score++;
+            });
+
+            const reward = score * 0.50;
+            const result = {
+                student: currentUser.username,
+                subject: currentQuestions[0]?.subject || 'unknown',
+                score,
+                total: currentQuestions.length,
+                reward,
+                date: new Date().toLocaleDateString('en-ZM')
+            };
+
+            testHistory.push(result);
+            localStorage.setItem('testHistory', JSON.stringify(testHistory));
+
+            showSection('resultsSection');
+
+            document.getElementById('resultsDisplay').innerHTML = `
+                <p style="font-size:1.4rem; margin-bottom:15px;">
+                    Score: <strong>${score} / ${currentQuestions.length}</strong>
+                </p>
+                <p style="color:#27ae60; font-weight:bold; font-size:1.3rem;">
+                    Reward Earned: K${reward.toFixed(2)}
+                </p>
+            `;
+
+            let fb = '<h3 style="margin:20px 0 10px;">Feedback</h3>';
+            currentQuestions.forEach((q, i) => {
+                const ans = userAnswers[i];
+                let status = '';
+                if (ans === undefined) {
+                    status = '<span style="color:#7f8c8d">Not answered</span>';
+                } else if (ans === q.answer) {
+                    status = '<span style="color:#27ae60">Correct</span>';
+                } else {
+                    status = `<span style="color:#e74c3c">Wrong</span> (Correct: ${q.answer})`;
                 }
-            }, 1000);
+                fb += `<p>Q${i+1}: ${status}<br><small>${q.explanation}</small></p>`;
+            });
+            document.getElementById('feedbackContainer').innerHTML = fb;
         }
 
-        async function submitTest() {
-            if (isSubmitting) return;
-            isSubmitting = true;
-            document.getElementById('finishBtn').disabled = true;
-
-            try {
-                clearInterval(timer);
-                let score = 0;
-                currentQuestions.forEach((q, i) => {
-                    if (userAnswers[i] === q.answer) score++;
-                });
-
-                const reward = score * 0.50;
-                const result = {
-                    student: currentUser.username,
-                    subject: currentQuestions[0].subject,
-                    score,
-                    total: currentQuestions.length,
-                    reward,
-                    date: new Date().toLocaleDateString('en-ZM')
-                };
-
-                const saveRes = await fetchWithError(`${API_URL}/save-test`, {
-                    method: 'POST',
-                    body: JSON.stringify(result)
-                });
-
-                if (!saveRes?.success) throw new Error('Failed to save');
-
-                testHistory.push(result);
-                localStorage.setItem('testHistory', JSON.stringify(testHistory));
-
-                showSection('resultsSection');
-                document.getElementById('resultsDisplay').innerHTML = `
-                    <p style="font-size:1.4rem; margin-bottom:15px;">
-                        You scored <strong>${score}</strong> / ${currentQuestions.length}
-                    </p>
-                    <p style="color:#27ae60; font-weight:bold; font-size:1.3rem;">
-                        Reward Earned: K${reward.toFixed(2)}
-                    </p>
-                `;
-
-                let fb = '<h3 style="margin:20px 0 10px;">Feedback</h3>';
-                currentQuestions.forEach((q, i) => {
-                    const correct = userAnswers[i] === q.answer;
-                    fb += `<p>Q${i+1}: ${correct ? '<span style="color:#27ae60">Correct</span>' : '<span style="color:#e74c3c">Wrong</span>'} - ${q.explanation || 'No explanation'}</p>`;
-                });
-                document.getElementById('feedbackContainer').innerHTML = fb;
-
-                if (currentUser.role === 'student') {
-                    setTimeout(showLeaderboard, 1800);
-                }
-            } catch (err) {
-                alert('Error saving: ' + (err.message || 'Unknown'));
-                testHistory.push(result);
-                localStorage.setItem('testHistory', JSON.stringify(testHistory));
-            } finally {
-                isSubmitting = false;
-                document.getElementById('finishBtn').disabled = false;
-            }
-        }
-
-        async function populateTeacherDashboard() {
+        function populateTeacherDashboard() {
             const tbody = document.getElementById('teacherTableBody');
-            tbody.innerHTML = '';
-
-            const history = await fetchWithError(`${API_URL}/get-history`) || testHistory;
-
-            history.forEach(r => {
+            tbody.innerHTML = testHistory.map(r => {
                 const student = students.find(s => s.username === r.student);
                 const masked = student ? '•'.repeat(student.password.length) : '—';
-                tbody.innerHTML += `
+                return `
                     <tr>
                         <td>${r.student}</td>
                         <td>${masked}</td>
@@ -595,258 +570,25 @@
                         <td>${r.date}</td>
                     </tr>
                 `;
-            });
+            }).join('');
         }
 
         function addStudent() {
             const u = document.getElementById('newStudentUsername').value.trim();
             const p = document.getElementById('newStudentPassword').value;
-            if (!u || !p) return alert("Enter username and password");
-            if (students.some(s => s.username === u)) return alert("Username exists");
-
+            if (!u || !p) return alert("Username and password required.");
+            if (students.some(s => s.username === u)) return alert("Username already taken.");
             students.push({ username: u, password: p, role: 'student' });
             localStorage.setItem('students', JSON.stringify(students));
-            alert(`Student ${u} created!`);
+            alert(`Student "${u}" created.`);
+            document.getElementById('newStudentUsername').value = '';
+            document.getElementById('newStudentPassword').value = '';
         }
 
         function logout() {
             currentUser = null;
             location.reload();
         }
-
-        // Leaderboard functions
-        function getFilteredHistory(subjectFilter = 'all', timeFilter = 'all') {
-            let filtered = testHistory;
-            if (subjectFilter !== 'all') filtered = filtered.filter(t => t.subject === subjectFilter);
-
-            const now = new Date();
-            if (timeFilter !== 'all') {
-                let startDate;
-                if (timeFilter === '7days') startDate = new Date(now.setDate(now.getDate() - 7));
-                else if (timeFilter === '30days') startDate = new Date(now.setDate(now.getDate() - 30));
-                else if (timeFilter === 'thisMonth') startDate = new Date(now.getFullYear(), now.getMonth(), 1);
-                else if (timeFilter === 'thisYear') startDate = new Date(now.getFullYear(), 0, 1);
-                filtered = filtered.filter(t => new Date(t.date.split('/').reverse().join('-')) >= startDate);
-            }
-            return filtered;
-        }
-
-        async function calculateLeaderboard(subjectFilter = 'all', timeFilter = 'all') {
-            const res = await fetchWithError(`${API_URL}/get-leaderboard`);
-            if (res) return res;
-
-            const filtered = getFilteredHistory(subjectFilter, timeFilter);
-            const stats = {};
-            filtered.forEach(e => {
-                if (!stats[e.student]) stats[e.student] = { username: e.student, totalReward: 0, totalCorrect: 0, totalQuestions: 0, testsTaken: 0, lastTestDate: 'None' };
-                stats[e.student].totalReward += e.reward;
-                stats[e.student].totalCorrect += e.score;
-                stats[e.student].totalQuestions += e.total;
-                stats[e.student].testsTaken++;
-                stats[e.student].lastTestDate = e.date;
-            });
-            let lb = Object.values(stats).map(s => ({
-                ...s,
-                avgScore: s.totalQuestions > 0 ? Math.round((s.totalCorrect / s.totalQuestions) * 100) : 0
-            }));
-            lb.sort((a,b) => b.totalReward - a.totalReward || b.avgScore - a.avgScore || b.testsTaken - a.testsTaken);
-            return lb;
-        }
-
-        async function renderLeaderboard() {
-            const sf = document.getElementById('leaderboardSubjectFilter')?.value || 'all';
-            const tf = document.getElementById('leaderboardTimeFilter')?.value || 'all';
-
-            const lb = await calculateLeaderboard(sf, tf);
-            const tbody = document.getElementById('leaderboardBody');
-            tbody.innerHTML = '';
-
-            const top = lb.slice(0, 10);
-            top.forEach((e, i) => {
-                const tr = document.createElement('tr');
-                if (i < 3) tr.classList.add('top-3');
-                tr.innerHTML = `
-                    <td data-label="Rank">${i+1}</td>
-                    <td data-label="Username">${e.username}</td>
-                    <td data-label="Total Reward">K${e.totalReward.toFixed(2)}</td>
-                    <td data-label="Avg Score">${e.avgScore}%</td>
-                    <td data-label="Tests">${e.testsTaken}</td>
-                    <td data-label="Last Test">${e.lastTestDate}</td>
-                `;
-                tbody.appendChild(tr);
-            });
-
-            if (currentUser?.role === 'student') {
-                const idx = lb.findIndex(e => e.username === currentUser.username);
-                const d = document.getElementById('yourRankDisplay');
-                d.innerHTML = idx !== -1 
-                    ? `You are <strong>#${idx+1}</strong> in this view with <strong>K${lb[idx].totalReward.toFixed(2)}</strong>`
-                    : "No matching tests in current filters.";
-            }
-        }
-
-        function showLeaderboard() {
-            renderLeaderboard();
-            showSection('leaderboardSection');
-        }
-
-        // ── REAL QUESTIONS ARRAY ────────────────────────────────────────────────
-        const questions = [
-            // Science (50 questions)
-            { id: 501, subject: "science", text: "Which nutrient is mainly needed for energy and is abundant in nshima?", options: ["A. Proteins", "B. Carbohydrates", "C. Vitamins", "D. Minerals"], answer: "B", explanation: "Carbohydrates (from maize meal) provide quick energy." },
-{ id: 502, subject: "science", text: "What is the function of the heart in the human body?", options: ["A. Filter blood", "B. Pump blood", "C. Digest food", "D. Breathe"], answer: "B", explanation: "The heart pumps oxygenated blood around the body." },
-{ id: 503, subject: "science", text: "Which Zambian crop is grown for its leaves and used in relishes like chibwabwa?", options: ["A. Maize", "B. Pumpkin leaves", "C. Cassava", "D. Beans"], answer: "B", explanation: "Pumpkin leaves are common in Zambian relishes." },
-{ id: 504, subject: "science", text: "What causes malaria in Zambia?", options: ["A. Dirty water", "B. Mosquito bite", "C. Bad food", "D. Cold weather"], answer: "B", explanation: "Plasmodium parasite is transmitted by female Anopheles mosquitoes." },
-{ id: 505, subject: "science", text: "Which part of the plant conducts water from roots to leaves?", options: ["A. Phloem", "B. Xylem", "C. Stomata", "D. Petals"], answer: "B", explanation: "Xylem transports water and minerals upwards." },
-{ id: 506, subject: "science", text: "What is the boiling point of water at sea level?", options: ["A. 0°C", "B. 50°C", "C. 100°C", "D. 212°C"], answer: "C", explanation: "Water boils at 100°C under normal pressure." },
-{ id: 507, subject: "science", text: "Which sense organ helps detect sweet, sour, salty, and bitter tastes?", options: ["A. Eyes", "B. Tongue", "C. Ears", "D. Nose"], answer: "B", explanation: "Taste buds on the tongue detect flavours." },
-{ id: 508, subject: "science", text: "What is the main danger of open defecation in rural Zambia?", options: ["A. Better soil", "B. Spread of cholera and diarrhoea", "C. More flies", "D. Cleaner air"], answer: "B", explanation: "Faeces contaminate water and food sources, spreading diseases." },
-{ id: 509, subject: "science", text: "Which gas do plants release during photosynthesis?", options: ["A. Carbon dioxide", "B. Oxygen", "C. Nitrogen", "D. Hydrogen"], answer: "B", explanation: "Photosynthesis produces oxygen as a by-product." },
-{ id: 510, subject: "science", text: "What is the young stage of a mosquito called?", options: ["A. Pupa", "B. Larva (wriggler)", "C. Adult", "D. Egg"], answer: "B", explanation: "Larva lives in water and is the wriggling stage." },
-{ id: 511, subject: "science", text: "Which simple machine is used to raise water from a borehole using a rope?", options: ["A. Lever", "B. Pulley", "C. Inclined plane", "D. Wedge"], answer: "B", explanation: "Pulley changes direction of force." },
-{ id: 512, subject: "science", text: "What helps prevent scurvy in the diet?", options: ["A. Vitamin A", "B. Vitamin C", "C. Vitamin D", "D. Iron"], answer: "B", explanation: "Vitamin C (from fruits like oranges, guavas) prevents scurvy." },
-{ id: 513, subject: "science", text: "Which Zambian national park is home to Victoria Falls?", options: ["A. Kafue", "B. South Luangwa", "C. Mosi-oa-Tunya", "D. Lower Zambezi"], answer: "C", explanation: "Mosi-oa-Tunya protects the falls." },
-{ id: 514, subject: "science", text: "What is the main function of the kidneys?", options: ["A. Pump blood", "B. Filter waste from blood", "C. Digest proteins", "D. Produce bile"], answer: "B", explanation: "Kidneys remove urea and excess water." },
-{ id: 515, subject: "science", text: "Which process turns liquid water into vapour?", options: ["A. Condensation", "B. Evaporation", "C. Freezing", "D. Melting"], answer: "B", explanation: "Evaporation occurs when heat is added." },
-{ id: 516, subject: "science", text: "What is a balanced meal in Zambia typically made of?", options: ["A. Nshima + relish + protein source", "B. Only sweets", "C. Only fruits", "D. Only water"], answer: "A", explanation: "Includes carbohydrates, proteins, vitamins/minerals." },
-{ id: 517, subject: "science", text: "Which animal is a herbivore commonly kept in Zambian villages?", options: ["A. Lion", "B. Goat", "C. Crocodile", "D. Eagle"], answer: "B", explanation: "Goats eat plants only." },
-{ id: 518, subject: "science", text: "What causes day and night on Earth?", options: ["A. Earth's revolution", "B. Earth's rotation", "C. Moon's orbit", "D. Sun moving"], answer: "B", explanation: "Rotation on axis causes day/night." },
-{ id: 519, subject: "science", text: "Which vitamin is produced when skin is exposed to sunlight?", options: ["A. Vitamin A", "B. Vitamin B", "C. Vitamin C", "D. Vitamin D"], answer: "D", explanation: "Sunlight helps synthesize vitamin D." },
-{ id: 520, subject: "science", text: "What is the role of decomposers in the environment?", options: ["A. Hunt prey", "B. Break down dead matter", "C. Make food", "D. Pollinate flowers"], answer: "B", explanation: "Decomposers recycle nutrients." },
-{ id: 521, subject: "science", text: "Which Zambian fish is rich in protein and often dried?", options: ["A. Tilapia", "B. Kapenta", "C. Catfish", "D. Bream"], answer: "B", explanation: "Kapenta is a staple dried fish." },
-{ id: 522, subject: "science", text: "What happens during respiration in humans?", options: ["A. Oxygen in, CO₂ out", "B. CO₂ in, oxygen out", "C. Food made", "D. Water evaporated"], answer: "A", explanation: "Cells use oxygen to release energy, produce CO₂." },
-{ id: 523, subject: "science", text: "Which simple machine is a hoe when digging soil?", options: ["A. Pulley", "B. Lever", "C. Screw", "D. Wheel"], answer: "B", explanation: "Hoe acts as a lever." },
-{ id: 524, subject: "science", text: "What is the main source of proteins for many Zambian families?", options: ["A. Nshima", "B. Beans and kapenta", "C. Bananas", "D. Sugar"], answer: "B", explanation: "Beans and small fish provide protein." },
-{ id: 525, subject: "science", text: "Which disease is prevented by iodised salt?", options: ["A. Malaria", "B. Goitre", "C. Cholera", "D. Diabetes"], answer: "B", explanation: "Iodine prevents thyroid swelling (goitre)." },
-{ id: 526, subject: "science", text: "What do we call animals without a backbone?", options: ["A. Vertebrates", "B. Invertebrates", "C. Mammals", "D. Birds"], answer: "B", explanation: "E.g. insects, worms." },
-{ id: 527, subject: "science", text: "Which gas supports burning?", options: ["A. Nitrogen", "B. Oxygen", "C. Carbon dioxide", "D. Helium"], answer: "B", explanation: "Oxygen is needed for combustion." },
-{ id: 528, subject: "science", text: "What is the function of chlorophyll in leaves?", options: ["A. Absorb water", "B. Trap sunlight for photosynthesis", "C. Store sugar", "D. Release CO₂"], answer: "B", explanation: "Green pigment captures light energy." },
-{ id: 529, subject: "science", text: "Which Zambian reptile lays eggs on land?", options: ["A. Fish", "B. Crocodile", "C. Frog", "D. Toad"], answer: "B", explanation: "Crocodiles are reptiles." },
-{ id: 530, subject: "science", text: "What causes thunder?", options: ["A. Lightning heating air rapidly", "B. Rain falling", "C. Wind blowing", "D. Clouds colliding"], answer: "A", explanation: "Rapid expansion of air produces sound." },
-{ id: 531, subject: "science", text: "Which food group builds and repairs body tissues?", options: ["A. Carbohydrates", "B. Proteins", "C. Fats", "D. Vitamins"], answer: "B", explanation: "Proteins for growth and repair." },
-{ id: 532, subject: "science", text: "What is the change from gas to liquid called?", options: ["A. Evaporation", "B. Condensation", "C. Freezing", "D. Melting"], answer: "B", explanation: "E.g. dew on grass." },
-{ id: 533, subject: "science", text: "Which organ produces insulin to control blood sugar?", options: ["A. Liver", "B. Pancreas", "C. Stomach", "D. Heart"], answer: "B", explanation: "Pancreas regulates glucose." },
-{ id: 534, subject: "science", text: "What protects the lungs and heart?", options: ["A. Ribs", "B. Skull", "C. Spine", "D. Pelvis"], answer: "A", explanation: "Ribs form a protective cage." },
-{ id: 535, subject: "science", text: "Which process do plants use to make food?", options: ["A. Respiration", "B. Photosynthesis", "C. Digestion", "D. Transpiration"], answer: "B", explanation: "Sunlight + CO₂ + water → glucose + oxygen." },
-{ id: 536, subject: "science", text: "What is the main danger of drinking untreated river water?", options: ["A. Too sweet", "B. Germs causing diarrhoea", "C. Too salty", "D. No colour"], answer: "B", explanation: "Contaminated water spreads diseases like cholera." },
-{ id: 537, subject: "science", text: "Which Zambian tree stores water in its trunk?", options: ["A. Mopane", "B. Baobab", "C. Acacia", "D. Pine"], answer: "B", explanation: "Baobab is known as the 'upside-down tree'." },
-{ id: 538, subject: "science", text: "What do platelets in blood help with?", options: ["A. Carry oxygen", "B. Fight germs", "C. Clot blood", "D. Digest food"], answer: "C", explanation: "Platelets stop bleeding by forming clots." },
-{ id: 539, subject: "science", text: "Which sense helps us maintain balance?", options: ["A. Eyes", "B. Inner ear", "C. Tongue", "D. Skin"], answer: "B", explanation: "Semicircular canals in inner ear detect movement." },
-{ id: 540, subject: "science", text: "What is the main source of energy for all food chains?", options: ["A. Animals", "B. Plants", "C. Sun", "D. Soil"], answer: "C", explanation: "Sun → plants (producers) → consumers." },
-{ id: 541, subject: "science", text: "Which disease is caused by lack of iron?", options: ["A. Kwashiorkor", "B. Anaemia", "C. Rickets", "D. Scurvy"], answer: "B", explanation: "Iron deficiency leads to low red blood cells." },
-{ id: 542, subject: "science", text: "What do roots do for a plant?", options: ["A. Make food", "B. Absorb water and minerals", "C. Attract insects", "D. Produce flowers"], answer: "B", explanation: "Roots anchor and take in nutrients." },
-{ id: 543, subject: "science", text: "Which Zambian mammal has stripes and is a herbivore?", options: ["A. Lion", "B. Zebra", "C. Elephant", "D. Hippo"], answer: "B", explanation: "Zebra has black and white stripes." },
-{ id: 544, subject: "science", text: "What causes rainbows?", options: ["A. Reflection only", "B. Refraction and dispersion of light", "C. Evaporation", "D. Condensation"], answer: "B", explanation: "Light bends and splits in raindrops." },
-{ id: 545, subject: "science", text: "Which simple machine is a ramp?", options: ["A. Lever", "B. Inclined plane", "C. Pulley", "D. Screw"], answer: "B", explanation: "Inclined plane reduces lifting effort." },
-{ id: 546, subject: "science", text: "What is the function of white blood cells?", options: ["A. Carry oxygen", "B. Fight infection", "C. Clot blood", "D. Transport food"], answer: "B", explanation: "White blood cells defend against germs." },
-{ id: 547, subject: "science", text: "Which crop is drought-resistant and used for mealie-meal alternative in dry areas?", options: ["A. Maize", "B. Sorghum", "C. Cassava", "D. Rice"], answer: "B", explanation: "Sorghum tolerates low rainfall." },
-{ id: 548, subject: "science", text: "What do we call the breathing holes on an insect's body?", options: ["A. Lungs", "B. Spiracles", "C. Gills", "D. Skin"], answer: "B", explanation: "Spiracles lead to tracheae." },
-{ id: 549, subject: "science", text: "Which part of the eye controls light entry?", options: ["A. Retina", "B. Iris", "C. Lens", "D. Cornea"], answer: "B", explanation: "Iris adjusts pupil size." },
-{ id: 550, subject: "science", text: "What is the main danger of burning plastic waste?", options: ["A. Good smell", "B. Toxic smoke harming lungs", "C. More light", "D. Cooler air"], answer: "B", explanation: "Burning plastic releases harmful chemicals." },
-            // English Grade 7 level – Zambian ECZ-style (grammar, vocab, usage)
-{ id: 2001, subject: "english", text: "Choose the correct sentence.", options: ["A. She go to school every day.", "B. She goes to school every day.", "C. She going to school every day.", "D. She go school every day."], answer: "B", explanation: "Third person singular present tense → goes" },
-{ id: 2002, subject: "english", text: "What is the opposite of 'generous'?", options: ["A. Kind", "B. Stingy", "C. Brave", "D. Happy"], answer: "B", explanation: "Generous = giving; opposite = stingy" },
-{ id: 2003, subject: "english", text: "Which word is a noun?", options: ["A. Run", "B. Beautiful", "C. Lusaka", "D. Quickly"], answer: "C", explanation: "Lusaka is a naming word (proper noun)" },
-{ id: 2004, subject: "english", text: "Fill in: They _____ football yesterday.", options: ["A. play", "B. plays", "C. played", "D. playing"], answer: "C", explanation: "Past tense of play = played" },
-{ id: 2005, subject: "english", text: "What does 'rapid' mean?", options: ["A. Slow", "B. Fast", "C. Big", "D. Small"], answer: "B", explanation: "Rapid = very quick" },
-{ id: 2006, subject: "english", text: "Choose the correct spelling.", options: ["A. Recieve", "B. Receive", "C. Receve", "D. Recive"], answer: "B", explanation: "i before e except after c" },
-{ id: 2007, subject: "english", text: "The boy _____ the ball.", options: ["A. kick", "B. kicks", "C. kicked", "D. kicking"], answer: "B", explanation: "Present simple third person → kicks" },
-{ id: 2008, subject: "english", text: "What is a synonym for 'happy'?", options: ["A. Sad", "B. Joyful", "C. Angry", "D. Tired"], answer: "B", explanation: "Happy = joyful" },
-{ id: 2009, subject: "english", text: "Which is an adverb?", options: ["A. Beautiful", "B. Quickly", "C. Table", "D. Run"], answer: "B", explanation: "Quickly describes how" },
-{ id: 2010, subject: "english", text: "Fill in: This is _____ book.", options: ["A. my", "B. mine", "C. me", "D. I"], answer: "A", explanation: "Possessive adjective = my" },
-{ id: 2011, subject: "english", text: "What is the plural of 'child'?", options: ["A. Childs", "B. Childes", "C. Children", "D. Childrens"], answer: "C", explanation: "Irregular plural = children" },
-{ id: 2012, subject: "english", text: "Choose the correct preposition: She is good _____ English.", options: ["A. in", "B. at", "C. on", "D. with"], answer: "B", explanation: "Good at a subject" },
-{ id: 2013, subject: "english", text: "What does 'brave' mean?", options: ["A. Fearful", "B. Courageous", "C. Weak", "D. Lazy"], answer: "B", explanation: "Brave = showing courage" },
-{ id: 2014, subject: "english", text: "Change to past tense: I eat nshima.", options: ["A. I ate nshima.", "B. I eats nshima.", "C. I eating nshima.", "D. I eated nshima."], answer: "A", explanation: "Past of eat = ate" },
-{ id: 2015, subject: "english", text: "Which is correct?", options: ["A. Between you and I", "B. Between you and me", "C. Between I and you", "D. Between me and you"], answer: "B", explanation: "Object pronoun = me" },
-{ id: 2016, subject: "english", text: "What is the superlative of 'good'?", options: ["A. Better", "B. Best", "C. Goodest", "D. More good"], answer: "B", explanation: "Irregular: good → best" },
-{ id: 2017, subject: "english", text: "Fill in: He is taller _____ me.", options: ["A. then", "B. than", "C. that", "D. as"], answer: "B", explanation: "Comparison → than" },
-{ id: 2018, subject: "english", text: "What does 'ancient' mean?", options: ["A. New", "B. Very old", "C. Modern", "D. Small"], answer: "B", explanation: "Ancient = very old" },
-{ id: 2019, subject: "english", text: "Choose the correct article: _____ elephant is big.", options: ["A. A", "B. An", "C. The", "D. No article"], answer: "B", explanation: "An before vowel sound" },
-{ id: 2020, subject: "english", text: "What is the past participle of 'go'?", options: ["A. Went", "B. Gone", "C. Goed", "D. Going"], answer: "B", explanation: "Have gone" },
-{ id: 2021, subject: "english", text: "Synonym for 'difficult'?", options: ["A. Easy", "B. Hard", "C. Simple", "D. Fast"], answer: "B", explanation: "Difficult = hard" },
-{ id: 2022, subject: "english", text: "Which is correct punctuation?", options: ["A. Whats your name", "B. What's your name?", "C. What,s your name?", "D. What is your name."], answer: "B", explanation: "Question mark + apostrophe in contraction" },
-{ id: 2023, subject: "english", text: "Fill in: We _____ playing since morning.", options: ["A. are", "B. have been", "C. was", "D. is"], answer: "B", explanation: "Present perfect continuous" },
-{ id: 2024, subject: "english", text: "What does 'cautious' mean?", options: ["A. Careless", "B. Careful", "C. Brave", "D. Fast"], answer: "B", explanation: "Cautious = careful" },
-{ id: 2025, subject: "english", text: "Change to passive: They built the house.", options: ["A. The house was built by them.", "B. The house built them.", "C. They was built the house.", "D. House built by they."], answer: "A", explanation: "Object becomes subject + was + past participle" },
-{ id: 2026, subject: "english", text: "Antonym of 'generous'?", options: ["A. Kind", "B. Selfish", "C. Friendly", "D. Polite"], answer: "B", explanation: "Opposite of giving" },
-{ id: 2027, subject: "english", text: "Which is correct?", options: ["A. Less books", "B. Fewer books", "C. Little books", "D. Much books"], answer: "B", explanation: "Fewer for countable nouns" },
-{ id: 2028, subject: "english", text: "What is a 'metaphor'?", options: ["A. Direct comparison using like/as", "B. Comparison without like/as", "C. Exaggeration", "D. Sound word"], answer: "B", explanation: "e.g. Time is money" },
-{ id: 2029, subject: "english", text: "Fill in: Neither the teacher nor the students _____ present.", options: ["A. was", "B. were", "C. is", "D. has"], answer: "B", explanation: "Plural when 'nor' joins plural" },
-{ id: 2030, subject: "english", text: "What does 'abundant' mean?", options: ["A. Scarce", "B. Plenty", "C. Few", "D. Empty"], answer: "B", explanation: "Abundant = a lot" },
-{ id: 2031, subject: "english", text: "Choose correct: He is afraid _____ dogs.", options: ["A. from", "B. of", "C. with", "D. at"], answer: "B", explanation: "Afraid of" },
-{ id: 2032, subject: "english", text: "What is the comparative of 'bad'?", options: ["A. Badder", "B. Worse", "C. More bad", "D. Worst"], answer: "B", explanation: "Irregular: bad → worse" },
-{ id: 2033, subject: "english", text: "Fill in: She sings _____ beautifully.", options: ["A. very", "B. much", "C. more", "D. many"], answer: "A", explanation: "Very + adverb" },
-{ id: 2034, subject: "english", text: "Synonym for 'famous'?", options: ["A. Unknown", "B. Well-known", "C. Hidden", "D. Secret"], answer: "B", explanation: "Famous = well-known" },
-{ id: 2035, subject: "english", text: "Which is correct spelling?", options: ["A. Occasion", "B. Occassion", "C. Ocasion", "D. Occation"], answer: "A", explanation: "Double c, single s" },
-{ id: 2036, subject: "english", text: "Change to indirect speech: He said, 'I am tired.'", options: ["A. He said that he is tired.", "B. He said that he was tired.", "C. He says he is tired.", "D. He said I am tired."], answer: "B", explanation: "Backshift tense" },
-{ id: 2037, subject: "english", text: "What does 'diligent' mean?", options: ["A. Lazy", "B. Hard-working", "C. Careless", "D. Slow"], answer: "B", explanation: "Diligent = hardworking" },
-{ id: 2038, subject: "english", text: "Fill in: This pen is _____ than that one.", options: ["A. good", "B. better", "C. best", "D. more good"], answer: "B", explanation: "Comparative degree" },
-{ id: 2039, subject: "english", text: "Which is an interjection?", options: ["A. Wow!", "B. Run", "C. Beautiful", "D. Table"], answer: "A", explanation: "Wow! shows emotion" },
-{ id: 2040, subject: "english", text: "Correct sentence: The news are good.", options: ["A. The news is good.", "B. The news were good.", "C. News is good.", "D. The news are goods."], answer: "A", explanation: "News is uncountable → is" },
-{ id: 2041, subject: "english", text: "What is the plural of 'mouse'?", options: ["A. Mouses", "B. Mice", "C. Mousees", "D. Mousen"], answer: "B", explanation: "Irregular plural = mice" },
-{ id: 2042, subject: "english", text: "Antonym of 'ancient'?", options: ["A. Old", "B. Modern", "C. Historic", "D. Aged"], answer: "B", explanation: "Opposite of very old" },
-{ id: 2043, subject: "english", text: "Fill in: _____ you like some tea?", options: ["A. Will", "B. Would", "C. Shall", "D. Can"], answer: "B", explanation: "Polite offer → Would" },
-{ id: 2044, subject: "english", text: "What does 'fragile' mean?", options: ["A. Strong", "B. Delicate", "C. Heavy", "D. Big"], answer: "B", explanation: "Fragile = easily broken" },
-{ id: 2045, subject: "english", text: "Choose correct: He has _____ homework.", options: ["A. many", "B. much", "C. few", "D. little"], answer: "B", explanation: "Much for uncountable" },
-{ id: 2046, subject: "english", text: "What is a 'pronoun'?", options: ["A. Action word", "B. Naming word", "C. Replacement for noun", "D. Describing word"], answer: "C", explanation: "He, she, it, etc." },
-{ id: 2047, subject: "english", text: "Correct: Neither John nor Mary _____ coming.", options: ["A. is", "B. are", "C. were", "D. have"], answer: "A", explanation: "Singular verb with 'neither...nor' when subjects mixed but singular focus" },
-{ id: 2048, subject: "english", text: "Synonym for 'obey'?", options: ["A. Disobey", "B. Follow", "C. Ignore", "D. Refuse"], answer: "B", explanation: "Obey = follow rules" },
-{ id: 2049, subject: "english", text: "Fill in: The sun _____ in the east.", options: ["A. rise", "B. rises", "C. rising", "D. rose"], answer: "B", explanation: "Present simple fact → rises" },
-{ id: 2050, subject: "english", text: "What does 'victory' mean?", options: ["A. Defeat", "B. Success in battle/game", "C. Loss", "D. Fight"], answer: "B", explanation: "Victory = winning" },
-            // Add mathematics and english questions when ready
-            // Example math:
-            { id: 1001, subject: "mathematics", text: "What is 15% of 200?", options: ["A. 20", "B. 25", "C. 30", "D. 35"], answer: "C", explanation: "15/100 × 200 = 30" },
-{ id: 1002, subject: "mathematics", text: "Convert 0.75 to a fraction in its simplest form.", options: ["A. 3/5", "B. 3/4", "C. 4/5", "D. 7/10"], answer: "B", explanation: "0.75 = 75/100 = 3/4" },
-{ id: 1003, subject: "mathematics", text: "What is the value of 3 + 5 × 2 – 4?", options: ["A. 9", "B. 13", "C. 6", "D. 12"], answer: "A", explanation: "Follow BODMAS: 5×2=10, then 3+10=13, 13-4=9" },
-{ id: 1004, subject: "mathematics", text: "Which is the smallest fraction? 3/8, 2/5, 1/2, 4/7", options: ["A. 3/8", "B. 2/5", "C. 1/2", "D. 4/7"], answer: "A", explanation: "3/8 = 0.375, 2/5=0.4, 1/2=0.5, 4/7≈0.571 → 3/8 is smallest" },
-{ id: 1005, subject: "mathematics", text: "A bag contains 24 oranges. What fraction is 8 oranges?", options: ["A. 1/4", "B. 1/3", "C. 2/5", "D. 1/2"], answer: "B", explanation: "8/24 = 1/3" },
-{ id: 1006, subject: "mathematics", text: "What is 2.45 × 10?", options: ["A. 24.5", "B. 245", "C. 0.245", "D. 24"], answer: "A", explanation: "Move decimal one place right" },
-{ id: 1007, subject: "mathematics", text: "Find the LCM of 6 and 8.", options: ["A. 12", "B. 24", "C. 48", "D. 2"], answer: "B", explanation: "Least Common Multiple = 24" },
-{ id: 1008, subject: "mathematics", text: "What is the perimeter of a square with side 9 cm?", options: ["A. 18 cm", "B. 36 cm", "C. 81 cm", "D. 27 cm"], answer: "B", explanation: "4 × 9 = 36 cm" },
-{ id: 1009, subject: "mathematics", text: "Convert 3/5 to percentage.", options: ["A. 30%", "B. 50%", "C. 60%", "D. 35%"], answer: "C", explanation: "(3/5) × 100 = 60%" },
-{ id: 1010, subject: "mathematics", text: "If x + 7 = 15, what is x?", options: ["A. 8", "B. 22", "C. 7", "D. 10"], answer: "A", explanation: "x = 15 – 7 = 8" },
-{ id: 1011, subject: "mathematics", text: "What is the area of a rectangle 6 cm long and 4 cm wide?", options: ["A. 10 cm²", "B. 20 cm²", "C. 24 cm²", "D. 28 cm²"], answer: "C", explanation: "length × width = 6 × 4 = 24 cm²" },
-{ id: 1012, subject: "mathematics", text: "Round 8.736 to 2 decimal places.", options: ["A. 8.73", "B. 8.74", "C. 8.7", "D. 9.00"], answer: "B", explanation: "6 is followed by 3 < 5 → no round up, but wait: 8.736 → third digit 6 ≥5 → 8.74" },
-{ id: 1013, subject: "mathematics", text: "What is 4/5 of 30?", options: ["A. 20", "B. 24", "C. 25", "D. 18"], answer: "B", explanation: "(4/5) × 30 = 24" },
-{ id: 1014, subject: "mathematics", text: "Find the HCF of 18 and 24.", options: ["A. 6", "B. 12", "C. 3", "D. 9"], answer: "A", explanation: "Highest Common Factor = 6" },
-{ id: 1015, subject: "mathematics", text: "What is the next number: 5, 10, 20, 40, …?", options: ["A. 50", "B. 60", "C. 80", "D. 45"], answer: "C", explanation: "Each number ×2 → 40×2=80" },
-{ id: 1016, subject: "mathematics", text: "1 litre = ? millilitres", options: ["A. 10 ml", "B. 100 ml", "C. 1000 ml", "D. 10000 ml"], answer: "C", explanation: "1 L = 1000 ml" },
-{ id: 1017, subject: "mathematics", text: "What is 25% as a fraction?", options: ["A. 1/2", "B. 1/4", "C. 3/4", "D. 1/5"], answer: "B", explanation: "25% = 25/100 = 1/4" },
-{ id: 1018, subject: "mathematics", text: "A triangle has angles 50°, 60°. What is the third angle?", options: ["A. 70°", "B. 90°", "C. 80°", "D. 100°"], answer: "A", explanation: "180° – 50° – 60° = 70°" },
-{ id: 1019, subject: "mathematics", text: "Divide 360 by 0.9.", options: ["A. 36", "B. 400", "C. 324", "D. 40"], answer: "B", explanation: "360 ÷ 0.9 = 360 × (10/9) = 400" },
-{ id: 1020, subject: "mathematics", text: "What is the mode of: 3, 7, 5, 3, 8, 3?", options: ["A. 3", "B. 5", "C. 7", "D. 8"], answer: "A", explanation: "3 appears most often" },
-{ id: 1021, subject: "mathematics", text: "Convert 7/20 to decimal.", options: ["A. 0.35", "B. 0.7", "C. 0.25", "D. 0.4"], answer: "A", explanation: "7 ÷ 20 = 0.35" },
-{ id: 1022, subject: "mathematics", text: "If 4 books cost K80, what is the cost of 7 books?", options: ["A. K120", "B. K140", "C. K100", "D. K160"], answer: "B", explanation: "80 ÷ 4 = 20 per book → 7 × 20 = 140" },
-{ id: 1023, subject: "mathematics", text: "What is 2³ × 3²?", options: ["A. 72", "B. 48", "C. 24", "D. 18"], answer: "A", explanation: "8 × 9 = 72" },
-{ id: 1024, subject: "mathematics", text: "The sum of three angles in a triangle is?", options: ["A. 180°", "B. 360°", "C. 90°", "D. 270°"], answer: "A", explanation: "Angle sum property of triangle" },
-{ id: 1025, subject: "mathematics", text: "What is -5 + 12?", options: ["A. 7", "B. -7", "C. 17", "D. -17"], answer: "A", explanation: "12 – 5 = 7" },
-{ id: 1026, subject: "mathematics", text: "A car travels 240 km in 4 hours. What is its speed?", options: ["A. 50 km/h", "B. 60 km/h", "C. 80 km/h", "D. 40 km/h"], answer: "B", explanation: "Distance ÷ Time = 240 ÷ 4 = 60 km/h" },
-{ id: 1027, subject: "mathematics", text: "Simplify 18:24.", options: ["A. 3:4", "B. 2:3", "C. 4:5", "D. 9:12"], answer: "A", explanation: "Divide by 6 → 3:4" },
-{ id: 1028, subject: "mathematics", text: "What is the median of: 4, 7, 2, 9, 5?", options: ["A. 5", "B. 4", "C. 7", "D. 6"], answer: "A", explanation: "Arrange: 2,4,5,7,9 → middle = 5" },
-{ id: 1029, subject: "mathematics", text: "0.06 as fraction is?", options: ["A. 6/100", "B. 3/50", "C. 6/10", "D. 3/5"], answer: "A", explanation: "6/100 = 3/50 (but simplest is 3/50 – wait, question wants 0.06=6/100)" },
-{ id: 1030, subject: "mathematics", text: "What is 5/6 – 1/3?", options: ["A. 1/2", "B. 1/6", "C. 2/3", "D. 4/6"], answer: "A", explanation: "5/6 – 2/6 = 3/6 = 1/2" },
-{ id: 1031, subject: "mathematics", text: "How many sides does a hexagon have?", options: ["A. 5", "B. 6", "C. 7", "D. 8"], answer: "B", explanation: "Hexa = 6" },
-{ id: 1032, subject: "mathematics", text: "K450 is increased by 20%. New amount?", options: ["A. K540", "B. K500", "C. K490", "D. K360"], answer: "A", explanation: "20% of 450 = 90 → 450 + 90 = 540" },
-{ id: 1033, subject: "mathematics", text: "What is the place value of 7 in 4.072?", options: ["A. Tenths", "B. Hundredths", "C. Thousandths", "D. Units"], answer: "C", explanation: "After decimal: 0 tenths, 7 hundredths? Wait – 4.072 → 0 tenths, 7 hundredths, 2 thousandths" },
-{ id: 1034, subject: "mathematics", text: "Find the volume of a cube with side 5 cm.", options: ["A. 25 cm³", "B. 125 cm³", "C. 100 cm³", "D. 150 cm³"], answer: "B", explanation: "5 × 5 × 5 = 125 cm³" },
-{ id: 1035, subject: "mathematics", text: "What is 9 ÷ (3 + 6) × 2?", options: ["A. 2", "B. 3", "C. 6", "D. 1"], answer: "A", explanation: "BODMAS: 3+6=9, 9÷9=1, 1×2=2" },
-{ id: 1036, subject: "mathematics", text: "If 3 : 5 = x : 20, what is x?", options: ["A. 12", "B. 15", "C. 10", "D. 8"], answer: "A", explanation: "Cross multiply: 3×20 = 5×x → x=12" },
-{ id: 1037, subject: "mathematics", text: "What is the Roman numeral for 49?", options: ["A. XLIX", "B. IL", "C. XXXXIX", "D. L"], answer: "A", explanation: "40 + 9 = XL + IX" },
-{ id: 1038, subject: "mathematics", text: "A watch gains 5 minutes every hour. In 6 hours how many minutes?", options: ["A. 25", "B. 30", "C. 35", "D. 20"], answer: "B", explanation: "5 min/hour × 6 = 30 min" },
-{ id: 1039, subject: "mathematics", text: "What is 1.2 kg in grams?", options: ["A. 120 g", "B. 1200 g", "C. 12 g", "D. 12000 g"], answer: "B", explanation: "1.2 × 1000 = 1200 g" },
-{ id: 1040, subject: "mathematics", text: "Simplify 36/48.", options: ["A. 3/4", "B. 2/3", "C. 4/5", "D. 9/12"], answer: "A", explanation: "Divide by 12 → 3/4" },
-{ id: 1041, subject: "mathematics", text: "What is the probability of getting heads when tossing a coin?", options: ["A. 1/4", "B. 1/2", "C. 1/3", "D. 1"], answer: "B", explanation: "1 out of 2 possibilities" },
-{ id: 1042, subject: "mathematics", text: "Find the average of 10, 20, 30, 40.", options: ["A. 25", "B. 30", "C. 100", "D. 20"], answer: "A", explanation: "(10+20+30+40)/4 = 100/4 = 25" },
-{ id: 1043, subject: "mathematics", text: "What is 4000 – 2567?", options: ["A. 1433", "B. 1533", "C. 1343", "D. 1443"], answer: "A", explanation: "4000 – 2567 = 1433" },
-{ id: 1044, subject: "mathematics", text: "Which is a prime number? 15, 17, 21, 25", options: ["A. 15", "B. 17", "C. 21", "D. 25"], answer: "B", explanation: "17 has only two factors: 1 and 17" },
-{ id: 1045, subject: "mathematics", text: "What is ¾ + ⅔?", options: ["A. 5/6", "B. 17/12", "C. 7/5", "D. 13/12"], answer: "D", explanation: "9/12 + 8/12 = 17/12 (improper)" },
-{ id: 1046, subject: "mathematics", text: "A rectangle has length 12 cm, width 5 cm. What is diagonal (approx)?", options: ["A. 13 cm", "B. 17 cm", "C. 10 cm", "D. 15 cm"], answer: "A", explanation: "Pythagoras: √(12² + 5²) = √(144+25)=√169=13" },
-{ id: 1047, subject: "mathematics", text: "What is 0.08 as percentage?", options: ["A. 0.8%", "B. 8%", "C. 80%", "D. 0.08%"], answer: "B", explanation: "0.08 × 100 = 8%" },
-{ id: 1048, subject: "mathematics", text: "If 5 workers finish in 12 days, how many days for 10 workers?", options: ["A. 6", "B. 24", "C. 10", "D. 15"], answer: "A", explanation: "Inverse proportion: 5×12 = 10×d → d=6" },
-{ id: 1049, subject: "mathematics", text: "What is the complement of 65°?", options: ["A. 25°", "B. 115°", "C. 35°", "D. 90°"], answer: "A", explanation: "90° – 65° = 25°" },
-{ id: 1050, subject: "mathematics", text: "Convert 2.5 hours to minutes.", options: ["A. 150 min", "B. 120 min", "C. 180 min", "D. 90 min"], answer: "A", explanation: "2.5 × 60 = 150 min" },
-        ];
     </script>
 </body>
 </html>
